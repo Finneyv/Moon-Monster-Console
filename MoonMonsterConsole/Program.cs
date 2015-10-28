@@ -8,8 +8,16 @@ namespace MoonMonsterConsole
 {
     class Program
     {
+        /// <summary>
+        /// test
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
+
+
         {
+            
+     
         }
     }
 }

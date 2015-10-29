@@ -10,6 +10,7 @@ namespace MoonMonsterConsole
     {
         /// <summary>
         /// test
+        /// this is working
         /// </summary>
         /// <param name="args"></param>
         static void Main(string[] args)

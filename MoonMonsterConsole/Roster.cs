@@ -32,6 +32,10 @@ namespace MoonMonsterConsole
             monsterRoster.Remove(item);
             monsterRoster.Insert(finalIndex, item);
         }
-
+        
+        public void removeMonster(monster unwantedMonster)
+        {
+            monsterRoster.Remove(unwantedMonster);
+        }
     }
 }

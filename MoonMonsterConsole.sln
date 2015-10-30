@@ -6,9 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoonMonsterConsole", "MoonMonsterConsole\MoonMonsterConsole.csproj", "{0D3A64ED-BCA1-4F9D-A1D8-141293F904A5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3A16CB6D-497A-4024-B2CF-33FE5EB8F970}"
-	ProjectSection(SolutionItems) = preProject
-		monster.cs = monster.cs
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

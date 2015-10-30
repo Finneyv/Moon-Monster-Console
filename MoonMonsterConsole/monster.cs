@@ -28,6 +28,7 @@ public class monster
 
     }
     
+    
 	void print()
     {
         Console.Write("first int= "+firstInt);

@@ -21,15 +21,12 @@ namespace MoonMonsterConsole
     // we need to make a class that has the input of two rosters, then allows two people to engage in a console based creature match
     class Program
     {
-        
         /// <summary>
         /// test
         /// this is working
         /// </summary>
         /// <param name="args"></param>
         static void Main(string[] args)
-
-
         {
            
      

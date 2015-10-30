@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 
 
-
 namespace MoonMonsterConsole
 {
     //first and foremost, this is amazing to finally be at this stage, if you are reading this, you are a winner
@@ -21,6 +20,11 @@ namespace MoonMonsterConsole
     // we need to make a class that has the input of two rosters, then allows two people to engage in a console based creature match
     class Program
     {
+       /* static void test() {
+            monster jack = new monster(12);
+            jack.print();
+            Console.ReadLine();
+        }*/
         /// <summary>
         /// test
         /// this is working
@@ -28,7 +32,7 @@ namespace MoonMonsterConsole
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-           
+            //test();
      
         }
     }

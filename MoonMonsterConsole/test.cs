@@ -36,7 +36,7 @@ namespace MoonMonsterConsole
             moveid=1
             stamina=45
                */
-            Move bite = new Move(1, 45, "normal", 700, 200, 35, 25, 60, 15, 40,90,0, 0, 0,0,0,0);
+            Move bite = new Move(1, 45, "normal", 700, 200, 35, 25, 60, 15, 40,25,0, 0, 0,0,0,0);
             moveList.Add(bite);
            
         
@@ -102,9 +102,10 @@ namespace MoonMonsterConsole
         public void buildBattleGround()
         {
             BattleGround firstFight = new BattleGround(playerOne, playerTwo);
-            int damage=firstFight.maxDamageSpec();
-            Console.Write("bite battle damage max is " + damage + "\n");
-            firstFight.applieddamage();
+           
+           float attack= firstFight.principalAttackValue(monsterDataBase.ElementAt(0), moveList.ElementAt(0));
+           float defense= firstFight.principalDefenseValue(monsterDataBase.ElementAt(1), moveList.ElementAt(0));
+           float netdamage = firstFight.returnNetPrincipalDamage(attack, defense);
             Console.ReadLine();
         }
         public void runtest()

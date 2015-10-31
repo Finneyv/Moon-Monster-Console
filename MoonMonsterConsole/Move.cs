@@ -48,6 +48,22 @@ namespace MoonMonsterConsole
             rock = frock;
             lightning = flightning;
         }
+        public int getDStrength()
+        {
+            return dstrength;
+        }
+        public int getDSize()
+        {
+            return dsize;
+        }
+        public int getDSpeed()
+        {
+            return dspeed;
+        }
+        public int getMaxDefense()
+        {
+            return maxDefense;
+        }
         public int getMaxDamage()
         {
             return maxDamage;

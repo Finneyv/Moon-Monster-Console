@@ -10,6 +10,7 @@ namespace MoonMonsterConsole
     {
         List<monster> monsterRoster = new List<monster>();
 
+
         public Roster(List<monster> fmonsterRoster)
         {
             monsterRoster = fmonsterRoster;

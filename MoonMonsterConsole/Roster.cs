@@ -12,9 +12,25 @@ namespace MoonMonsterConsole
 
         public Roster(List<monster> fmonsterRoster)
         {
-            fmonsterRoster = monsterRoster;
+            monsterRoster = fmonsterRoster;
+        }
+        public int count()
+        {
+            return monsterRoster.Count();
+
         }
 
+        public monster returnMonsterAt(int index)
+        {
+            monster toBeReturned = monsterRoster.ElementAt(index);
+            //monsterRoster.ElementAt(index).getmoveList().ElementAt(0).getMaxDamage();
+            return toBeReturned;
+        }
+        public int testMaxdamageSpecailCase(int index)
+        {
+            int damage=monsterRoster.ElementAt(index).getmoveList().ElementAt(0).getMaxDamage();
+            return damage;
+        }
         public void addMonster(monster newMonster)
         {
             monsterRoster.Add(newMonster);

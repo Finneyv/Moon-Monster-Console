@@ -12,6 +12,7 @@ namespace MoonMonsterConsole
         // The first variable is a test
         int firstInt = 0;
         // the first set of variables are the ones that will change
+        int size = 0;
         int id = 0;
         int health = 0;
         int stamina = 0;
@@ -28,7 +29,7 @@ namespace MoonMonsterConsole
 
 
        // here I am attempting to intialize the monster and give it a test value, i then expect this function to assign the value and print firstInt
-        public monster(int firstid, int fhealth, int fstamina, int flevel, int fspeed, int fagility, int fstrength, List<Move> fmoveList)
+        public monster(int firstid, int fhealth, int fstamina, int flevel, int fspeed, int fagility, int fstrength,int sizet, List<Move> fmoveList)
         {
             id = firstid;
             health = fhealth;
@@ -38,6 +39,8 @@ namespace MoonMonsterConsole
             agility = fagility;
             strength = fstrength;
             moveList = fmoveList;
+            size = sizet;
+
         }
         public monster(int firstid, int flevel)
         {
@@ -65,7 +68,10 @@ namespace MoonMonsterConsole
                 hasStamina = false;
             }
         }
-
+        public int getSpeed()
+        {
+            return this.speed;
+        }
         public Boolean currentlyLiving()
         {
             return isAlive;
@@ -92,7 +98,11 @@ namespace MoonMonsterConsole
         {
             return health;
         }
-
+        
+        public int getSize()
+        {
+            return this.size;
+        }
         public int getId()
         {
             return id;

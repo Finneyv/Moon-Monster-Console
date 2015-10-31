@@ -24,10 +24,13 @@ namespace MoonMonsterConsole
         int water;
         int rock;
         int lightning;
-
+        int dstrength;
+        int astrength;
         //initializing Move as an object f stands for first
-        public Move(int fmoveId, int fstaminaReq, string ftype, int fmaxDamage, int fmaxDefense, int fasize, int faspeed, int fdsize, int fdspeed, int ffire, int fice, int fplant, int fwater, int frock, int flightning)
+        public Move(int fmoveId, int fstaminaReq, string ftype, int fmaxDamage, int fmaxDefense, int fasize, int faspeed, int fdsize, int fdspeed,int taStrength, int tdStrength, int ffire, int fice, int fplant, int fwater, int frock, int flightning)
         {
+            dstrength = tdStrength;
+            astrength = taStrength;
             moveId = fmoveId;
             staminaReq = fstaminaReq;
             type = ftype;
@@ -39,10 +42,27 @@ namespace MoonMonsterConsole
             dspeed = fdspeed;
             fire = ffire;
             ice = fice;
+
             plant = fplant;
             water = fwater;
             rock = frock;
             lightning = flightning;
+        }
+        public int getMaxDamage()
+        {
+            return maxDamage;
+        }
+        public int getSpeed()
+        {
+            return this.aspeed;
+        }
+        public int getStrength()
+        {
+            return this.astrength;
+        }
+        public int getSize()
+        {
+            return this.asize;
         }
 
     }

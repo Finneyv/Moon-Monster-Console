@@ -33,7 +33,9 @@ namespace MoonMonsterConsole
         static void Main(string[] args)
         {
             //test();
-     
+            List<Move> moveList = new List<Move>();
+            test firsttest = new test();
+            firsttest.runtest();
         }
     }
 }

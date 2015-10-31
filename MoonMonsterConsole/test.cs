@@ -36,7 +36,7 @@ namespace MoonMonsterConsole
             moveid=1
             stamina=45
                */
-            Move bite = new Move(1, 45, "normal", 700, 200, 35, 25, 60, 15, 80,90,0, 0, 0,0,0,0);
+            Move bite = new Move(1, 45, "normal", 700, 200, 35, 25, 60, 15, 40,90,0, 0, 0,0,0,0);
             moveList.Add(bite);
            
         

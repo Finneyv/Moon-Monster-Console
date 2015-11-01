@@ -37,20 +37,20 @@ namespace MoonMonsterConsole
             moveSize = moveSize * creatureSize;
             moveSpeed = moveSpeed * creatureSpeed;
             moveStrength = moveStrength * creatureStrength;
-            Console.Write("move size " + moveSize +"\n");
-            Console.Write("move speed " + moveSpeed + "\n");
-            Console.Write("move Strength " + moveStrength + "\n");
+           // Console.Write("move size " + moveSize + "\n");
+            //Console.Write("move speed " + moveSpeed + "\n");
+            //Console.Write("move Strength " + moveStrength + "\n");
 
             float total = moveSize + moveSpeed + moveStrength;
             float effectivnessDecimal = total / 100;
-            Console.Write("move max damage @ 100% effecency " + pAV + "\n");
-            Console.Write("effectivness deceimal= " + effectivnessDecimal + "\n");
+            //Console.Write("move max damage @ 100% effecency " + pAV + "\n");
+            //Console.Write("effectivness deceimal= " + effectivnessDecimal + "\n");
             pAV = pAV * effectivnessDecimal;
-            Console.Write("max damage after applied (defense still to be calculated) " + pAV + "\n");
+           // Console.Write("max damage after applied (defense still to be calculated) " + pAV + "\n");
 
             float levelMod = attackMonster.getlevel();
             levelMod = levelMod / 100;
-            Console.Write(" level mod attacker " + levelMod + "\n");
+           // Console.Write(" level mod attacker " + levelMod + "\n");
             pAV = pAV * levelMod;
             Console.Write(" final pAV w/ level consider " + pAV + "\n");
             Console.Write("\n");
@@ -81,19 +81,19 @@ namespace MoonMonsterConsole
 
 
             float effectivnessDecimal = total / 100;
-            Console.Write("move max damage @ 100% effecency " + pAV + "\n");
+          //  Console.Write("move max damage @ 100% effecency " + pAV + "\n");
 
             pAV = pAV * effectivnessDecimal;
-            Console.Write("max damage after applied (defense still to be calculated) " + pAV + "\n");
+            //Console.Write("max damage after applied (defense still to be calculated) " + pAV + "\n");
 
             float levelMod = attackMonster.getlevel();
             levelMod = levelMod / 100;
-            Console.Write(" level mod attacker " + levelMod + "\n");
+        //    Console.Write(" level mod attacker " + levelMod + "\n");
             pAV = pAV * levelMod;
-            Console.Write("pAV w/ level consider " + pAV + "\n");
+          //  Console.Write("pAV w/ level consider " + pAV + "\n");
             float fireMult = attackMove.getFire();
             fireMult = fireMult / 100;
-            Console.Write("fire mult " + fireMult + "\n");
+           // Console.Write("fire mult " + fireMult + "\n");
 
             pAV = pAV * fireMult;
             Console.Write("pAV w/ fire " + pAV + "\n");
@@ -104,7 +104,7 @@ namespace MoonMonsterConsole
         public float principalDefenseValue(monster defenseMonster, Move attackMove)
         {
             float pDV = attackMove.getMaxDefense();
-            Console.Write("  max d =" + pDV + "\n");
+          //  Console.Write("  max d =" + pDV + "\n");
             float dSpeed = attackMove.getDSpeed();
             float dSize = attackMove.getDSize();
             float dstrength = attackMove.getDStrength();
@@ -129,15 +129,18 @@ namespace MoonMonsterConsole
             dstrength = dstrength * defenderStrengh;
             float total = dSpeed + dSize + dstrength;
             total = total / 100;
-            Console.Write(" total % effective ness=  " + total + "\n");
+         //   Console.Write(" total % effective ness=  " + total + "\n");
             float levelMod = defenseMonster.getlevel();
             levelMod = levelMod / 100;
-            Console.Write(" level mod " + levelMod + "\n");
+       //     Console.Write(" level mod " + levelMod + "\n");
             total = total * levelMod;
-            Console.Write(" total=  " + total + "\n");
+        //    Console.Write(" total=  " + total + "\n");
             pDV = pDV * total;
             Console.Write("principal defense value =" + pDV + "\n");
             Console.Write("\n");
+
+           
+
             return pDV;
         }
 
@@ -169,9 +172,21 @@ namespace MoonMonsterConsole
             return damage;
         }
 
+
         public Roster castMove(monster attackMonster, Move attackMove, monster defendingMonster)
         {
-            Console.Write("Move Name: " + attackMove.getName()+"\n");
+
+
+            int staminaRequired = attackMove.getStamina();
+            int staminaPossessed = attackMonster.getstamina();
+            // if (staminaRequired > staminaPossessed)
+            //{
+            //Console.Write("not enough stamina to function ERRRROR ERROR");
+            //  return null;
+            //}
+            // else
+
+            Console.Write("Move Name: " + attackMove.getName() + "\n");
             Console.Write("Attacker: " + attackMonster.getName() + " Level: " + attackMonster.getlevel() + "\n");
             Console.Write("Defender: " + defendingMonster.getName() + " Level: " + defendingMonster.getlevel() + "\n");
             float damage = 0;
@@ -196,36 +211,108 @@ namespace MoonMonsterConsole
                     keepTrack = 1;
                     Console.Write("check lava on grass" + "\n");
                 }
-            }
-                if (keepTrack == 0)
+                if (defendingMonster.getType() == "ice")
                 {
-                    Console.Write("something went wrong with a specail move mult" + "\n");
+                    float fireTypeBonus = (float)2;
+                    damage = typeBonus(fireTypeBonus, damage);
+                    keepTrack = 1;
+                    Console.Write("check lava on ice" + "\n");
+                }
+                if (defendingMonster.getType() == "rock")
+                {
+                    float fireTypeBonus = (float).60;
+                    damage = typeBonus(fireTypeBonus, damage);
+                    keepTrack = 1;
+                    Console.Write("check lava on rock" + "\n");
+                }
+                if (defendingMonster.getType() == "water")
+                {
+                    float fireTypeBonus = (float).5;
+                    damage = typeBonus(fireTypeBonus, damage);
+                    keepTrack = 1;
+                    Console.Write("check lava on water" + "\n");
                 }
 
-                int roundedD = (int)damage;
-                Console.Write("rounded damage " + roundedD + "\n");
-                Console.Write("health of defender before " + defendingMonster.gethealth() + "\n");
+            }
+            if (attackMove.getType() == "plant")
+                Console.Write("check plant at first junction" + "\n");
+            {
+                if (defendingMonster.getType() == "rock")
+                {
+                    float fireTypeBonus = (float)2;
+                    damage = typeBonus(fireTypeBonus, damage);
+                    keepTrack = 1;
+                    Console.Write("check plant on rock" + "\n");
+                }
+                if (defendingMonster.getType() == "lava")
+                {
+                    Console.Write("check plant on fire at step two" + "\n");
+                    float fireTypeBonus = (float).7;
+                    damage = typeBonus(fireTypeBonus, damage);
+                    keepTrack = 1;
+                    Console.Write("check plant on lava" + "\n");
+                }
+                if (defendingMonster.getType() == "ice")
+                {
+                    float fireTypeBonus = (float).6;
+                    damage = typeBonus(fireTypeBonus, damage);
+                    keepTrack = 1;
+                    Console.Write("check plant on ice" + "\n");
+                }
+                if (defendingMonster.getType() == "water")
+                {
+                    float fireTypeBonus = (float)2;
+                    damage = typeBonus(fireTypeBonus, damage);
+                    keepTrack = 1;
+                    Console.Write("check plant on water" + "\n");
+                }
+
+
+
+
+            }
+
+            if (keepTrack == 0)
+            {
+                Console.Write("something went wrong with a specail move mult" + "\n");
+            }
+
+            int roundedD = (int)damage;
+            Console.Write("rounded damage " + roundedD + "\n");
+            Console.Write("health of defender before " + defendingMonster.gethealth() + "\n");
 
             // Before damage is rendered the random varible must be applied 
             //            the random effectiveness variable, it will be modeled as RE = (2 / 3 + E) + R where 2 / 3 represents 66 % 
             //effective all the time, then E = Level / 300, such that at level 100 a creature will be completely effective while
-              //  a creature at 1 will be .661.Then another variable R will be created. R will be a number that is a random 
-              //  number between the range of 0:X where x = 1 - (.2 / 3 + E), 
+            //  a creature at 1 will be .661.Then another variable R will be created. R will be a number that is a random 
+            //  number between the range of 0:X where x = 1 - (.2 / 3 + E), 
 
-                defendingMonster.renderDamage(roundedD);
-                Console.Write("health of defender after " + defendingMonster.gethealth() + "\n");
-                Console.Write("\n");
-                attackMonster.useStamina(attackMove.getStamina());
-                List<monster> attackDefenderList = new List<monster>();
-                attackDefenderList.Add(attackMonster);
-                attackDefenderList.Add(defendingMonster);
-                Roster attackDefense = new Roster(attackDefenderList);
-                return attackDefense;
-
+            defendingMonster.renderDamage(roundedD);
+            Console.Write("health of defender after " + defendingMonster.gethealth() + "\n");
+            Console.Write("\n");
+            attackMonster.useStamina(attackMove.getStamina());
+            List<monster> attackDefenderList = new List<monster>();
+            attackDefenderList.Add(attackMonster);
+            attackDefenderList.Add(defendingMonster);
+            Roster attackDefense = new Roster(attackDefenderList);
+            if (defendingMonster.currentlyLiving() == false)
+            {
+                Console.Write(defendingMonster.getName() + " is dead" + "\n");
             }
+
+            return attackDefense;
+
+        }
+
+        public void printHealth(monster attacker, monster defender)
+        {
+            Console.Write(attacker.getName() + "health = " + attacker.gethealth() + "\n");
+            Console.Write(defender.getName() + "health = " + defender.gethealth() + "\n");
+            Console.Write("\n");
 
         }
     }
+}
 
     
 

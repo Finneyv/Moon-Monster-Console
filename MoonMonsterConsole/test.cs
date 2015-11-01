@@ -38,9 +38,10 @@ namespace MoonMonsterConsole
                */
             Move bite = new Move("bite",1, 45, "normal", 700, 200, 35, 25, 60, 15, 40,25,0, 0, 0,0,0,0);
             Move fireBreath = new Move("fire Breath",2, 60, "lava", 950, 450, 15, 50, 50, 20, 50, 30, 85, 0, 0, 0, 0, 0);
+            Move photoBeam = new Move("photoBeam", 3, 60, "plant", 750, 200, 35, 40, 60, 25, 40, 25, 0, 0, 85, 0, 0, 0);
             moveList.Add(bite);
             moveList.Add(fireBreath);
-
+            moveList.Add(photoBeam);
            
         
 
@@ -104,17 +105,24 @@ namespace MoonMonsterConsole
         }
         public void buildBattleGround()
         {
+            // First battle, dragon shepard (DS) vs triceritops (T)
             BattleGround firstFight = new BattleGround(playerOne, playerTwo);
-
-            // float attack= firstFight.principalAttackValue(monsterDataBase.ElementAt(0), moveList.ElementAt(0));
-            //float defense= firstFight.principalDefenseValue(monsterDataBase.ElementAt(1), moveList.ElementAt(0));
-            //float netdamage = firstFight.NetPrincipalDamage(attack, defense);
-
-            //            float fireNetDamage = firstFight.calcFireDamage(monsterDataBase.ElementAt(0), moveList.ElementAt(1), monsterDataBase.ElementAt(1));
-            //          Console.Write("calc fire damage " + fireNetDamage+"\n");
+            firstFight.printHealth(monsterDataBase.ElementAt(0), monsterDataBase.ElementAt(1));
+            // (DS) casts bite         
             firstFight.castMove(monsterDataBase.ElementAt(0), moveList.ElementAt(0), monsterDataBase.ElementAt(1));
+            firstFight.printHealth(monsterDataBase.ElementAt(0), monsterDataBase.ElementAt(1));
+            // (T) casts Photo Beam            
+            firstFight.castMove(monsterDataBase.ElementAt(1), moveList.ElementAt(2), monsterDataBase.ElementAt(0));
+            firstFight.printHealth(monsterDataBase.ElementAt(0), monsterDataBase.ElementAt(1));
+            //(DS) casts fire breath
             firstFight.castMove(monsterDataBase.ElementAt(0), moveList.ElementAt(1), monsterDataBase.ElementAt(1));
-
+            firstFight.printHealth(monsterDataBase.ElementAt(0), monsterDataBase.ElementAt(1));
+            // (T) casts Photo Beam            
+            firstFight.castMove(monsterDataBase.ElementAt(1), moveList.ElementAt(2), monsterDataBase.ElementAt(0));
+            firstFight.printHealth(monsterDataBase.ElementAt(0), monsterDataBase.ElementAt(1));
+            // (DS) casts bite         
+            firstFight.castMove(monsterDataBase.ElementAt(0), moveList.ElementAt(0), monsterDataBase.ElementAt(1));
+            firstFight.printHealth(monsterDataBase.ElementAt(0), monsterDataBase.ElementAt(1));
             Console.ReadLine();
         }
         public void runtest()

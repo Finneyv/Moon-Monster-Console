@@ -225,10 +225,18 @@ namespace MoonMonsterConsole
                     Console.Write("check lava on water" + "\n");
                     return damage;
                 }
+                if (defendingMonster.getType() == "lava")
+                {
+                    
+                    damage = 1;
+                    keepTrack = 1;
+                    Console.Write("check lava on lava" + "\n");
+                    return damage;
+                }
 
             }
             if (attackMove.getType() == "plant")
-               
+                Console.Write("check plant on first" + "\n");
             {
                 if (defendingMonster.getType() == "rock")
                 {
@@ -370,7 +378,6 @@ namespace MoonMonsterConsole
             }
         }
 
-
         public Roster buildRosterFromConsole()
         {
 
@@ -378,7 +385,7 @@ namespace MoonMonsterConsole
             Roster playerOneRoster = new Roster(monsterList);
             Console.Write("How many Monsters does this roster need? (input an Integar)" + "\n");
             String p1NumberOfMonsterS = Console.ReadLine();
-
+  
             int p1numMon = Convert.ToInt32(p1NumberOfMonsterS);
             for (int i = 0; i < p1numMon; i++)
             {
@@ -391,23 +398,20 @@ namespace MoonMonsterConsole
                 int monsterId = Convert.ToInt32(monsterIdString);
                 monsterId = monsterId - 1;
                 playerOneRoster.addMonster(monsterDataBase.ElementAt(monsterId));
-
             }
             for (int i = 0; i < playerOneRoster.count(); i++)
             {
-                Console.Write("Player 1 Monster at:" + +i + " is called = " + playerOneRoster.returnMonsterAt(i).getName() + "\n");
+                Console.Write("Player" + "\n");
+                    //Monster at:" + +i + " is called = " + playerOneRoster.returnMonsterAt(i).getName() + "\n");
+
                 for (int b = 0; b < playerOneRoster.returnMonsterAt(i).getmoveList().Count; b++)
                 {
                     Console.Write(playerOneRoster.returnMonsterAt(i).getName() + " move number " + b + " is named " + playerOneRoster.returnMonsterAt(i).getmoveList().ElementAt(b).getName() + "\n");
                 }
             }
-
-
             Console.ReadLine();
             return playerOneRoster;
         }
-
-
 
         public void battleManager(Roster feedPlayerOne, Roster feedPlayerTwo,List<monster> monsterDataBase)
         {

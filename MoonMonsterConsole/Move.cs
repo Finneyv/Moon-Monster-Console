@@ -97,6 +97,9 @@ namespace MoonMonsterConsole
         {
             return type;
         }
-
+        public int getId()
+        {
+            return moveId;
+        }
     }
 }

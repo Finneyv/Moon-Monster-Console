@@ -10,10 +10,12 @@ namespace MoonMonsterConsole
     {
         Roster playerOneRoster;
         Roster playerTwoRoster;
-        public BattleGround(Roster playerOneTemp, Roster playerTwoTemp)
+        List<monster> monsterDataBase;
+        public BattleGround(Roster playerOneTemp, Roster playerTwoTemp, List<monster> monsterDataBaseFeed)
         {
             playerOneRoster = playerOneTemp;
             playerTwoRoster = playerTwoTemp;
+            monsterDataBase = monsterDataBaseFeed;
         }
         public float principalAttackValue(monster attackMonster, Move attackMove)
         {
@@ -142,6 +144,22 @@ namespace MoonMonsterConsole
             return pDV;
         }
 
+        public Move getMoveFromConsole(List<Move> moveList)
+        {
+            Console.Write("     Please pick a move" + "\n");
+            for (int b = 0; b < moveList.Count; b++)
+            {
+                Console.Write("Name: " + moveList.ElementAt(b).getName() + ", Id: " + moveList.ElementAt(b).getId() + ", Type: " + moveList.ElementAt(b).getType() + ", M Damage: " + moveList.ElementAt(b).getMaxDamage() + ", M Defense: " + moveList.ElementAt(b).getMaxDefense() + "\n");
+            }
+            string tempMove = Console.ReadLine();
+            int tempMoveInt = Convert.ToInt32(tempMove);
+            tempMoveInt = tempMoveInt - 1;
+            Console.Write("Move chosen is: " + moveList.ElementAt(tempMoveInt).getName() + "\n");
+            Console.Write("\n");
+            return moveList.ElementAt(tempMoveInt);
+
+        }
+
         public float NetPrincipalDamage(float attack, float defense)
         {
 
@@ -260,7 +278,7 @@ namespace MoonMonsterConsole
             else
             {
                
-                Console.Write("something went wrong with a specail move mult" + "\n");
+                Console.Write("something else went wrong with a specail move mult" + "\n");
                 return damage;
             }
             
@@ -322,31 +340,137 @@ namespace MoonMonsterConsole
 
         }
     
-        public void battleManager(Roster feedPlayerOne, Roster feedPlayerTwo)
+        public void iterator(Roster playerOneRoster, Roster playerTwoRoster)
         {
-            playerOneRoster = feedPlayerOne;
-            playerTwoRoster = feedPlayerTwo;
-           
-            for (int i = 0; i < playerOneRoster.count(); i++){
-                Console.Write("Player 1 Monster at ="+i+" is called ="+playerOneRoster.returnMonsterAt(i).getName()+"\n");
-                for (int b = 0; b< playerOneRoster.returnMonsterAt(i).getmoveList().Count; b++)
+            for (int a = 0; a < playerOneRoster.count(); a++)
+            {
+                if (playerOneRoster.returnMonsterAt(a).currentlyLiving() == true)
                 {
-                    Console.Write(playerOneRoster.returnMonsterAt(i).getName() + " move number " + b+1 + " is named " + playerOneRoster.returnMonsterAt(i).getmoveList().ElementAt(b).getName()+"\n");
+                    
+                    for(int b = 0; b < playerTwoRoster.count(); b++)
+                    {
+                        if (playerTwoRoster.returnMonsterAt(b).currentlyLiving() == true)
+                        {
+                            Move moveCast = getMoveFromConsole(playerOneRoster.returnMonsterAt(a).getmoveList());
+                            castMove(playerOneRoster.returnMonsterAt(a), moveCast, playerTwoRoster.returnMonsterAt(b));
+                            iterator(playerTwoRoster, playerOneRoster);
+                        }
+                        else
+                        {
+                            Console.Write("player 2s " + playerTwoRoster.returnMonsterAt(b).getName() + " is dead "+"\n");
+                        }
+                    }           
+
+                }
+                else
+                {
+                    //
+                    Console.Write("Player 1's: " +playerOneRoster.returnMonsterAt(a) + " is Dead");
                 }
             }
-            for (int i = 0; i < playerTwoRoster.count(); i++)
+        }
+
+
+        public Roster buildRosterFromConsole()
+        {
+
+            List<monster> monsterList = new List<monster>();
+            Roster playerOneRoster = new Roster(monsterList);
+            Console.Write("How many Monsters does this roster need? (input an Integar)" + "\n");
+            String p1NumberOfMonsterS = Console.ReadLine();
+
+            int p1numMon = Convert.ToInt32(p1NumberOfMonsterS);
+            for (int i = 0; i < p1numMon; i++)
             {
-                Console.Write("Player 2 Monster at =" + i + " is called =" + playerTwoRoster.returnMonsterAt(i).getName() + "\n");
-                for (int b = 0; b < playerTwoRoster.returnMonsterAt(i).getmoveList().Count; b++)
+                Console.Write("Pick the Id of your first monster" + "\n");
+                for (int b = 0; b < monsterDataBase.Count; b++)
                 {
-                    Console.Write(playerTwoRoster.returnMonsterAt(i).getName() + " move number " + b+1 + " is named " + playerTwoRoster.returnMonsterAt(i).getmoveList().ElementAt(b).getName() + "\n");
+                    Console.Write(" Monster: " + monsterDataBase.ElementAt(b).getName() + ", Id: " + monsterDataBase.ElementAt(b).getId() + "\n");
                 }
+                string monsterIdString = Console.ReadLine();
+                int monsterId = Convert.ToInt32(monsterIdString);
+                monsterId = monsterId - 1;
+                playerOneRoster.addMonster(monsterDataBase.ElementAt(monsterId));
 
             }
-            monster attacker = playerOneRoster.returnMonsterAt(0);
-            monster defender = playerTwoRoster.returnMonsterAt(0);
-            Move attackMove = attacker.getmoveList().ElementAt(0);
-            castMove(attacker, attackMove, defender);
+            for (int i = 0; i < playerOneRoster.count(); i++)
+            {
+                Console.Write("Player 1 Monster at:" + +i + " is called = " + playerOneRoster.returnMonsterAt(i).getName() + "\n");
+                for (int b = 0; b < playerOneRoster.returnMonsterAt(i).getmoveList().Count; b++)
+                {
+                    Console.Write(playerOneRoster.returnMonsterAt(i).getName() + " move number " + b + " is named " + playerOneRoster.returnMonsterAt(i).getmoveList().ElementAt(b).getName() + "\n");
+                }
+            }
+
+
+            Console.ReadLine();
+            return playerOneRoster;
+        }
+
+
+
+        public void battleManager(Roster feedPlayerOne, Roster feedPlayerTwo,List<monster> monsterDataBase)
+        {
+            playerOneRoster = buildRosterFromConsole(); 
+            playerTwoRoster = buildRosterFromConsole();
+
+
+            /*    for (int i = 0; i < playerOneRoster.count(); i++){
+                    Console.Write("Player 1 Monster at ="+i+" is called ="+playerOneRoster.returnMonsterAt(i).getName()+"\n");
+                    for (int b = 0; b< playerOneRoster.returnMonsterAt(i).getmoveList().Count; b++)
+                    {
+                        Console.Write(playerOneRoster.returnMonsterAt(i).getName() + " move number " + b+1 + " is named " + playerOneRoster.returnMonsterAt(i).getmoveList().ElementAt(b).getName()+"\n");
+                    }
+                }
+                for (int i = 0; i < playerTwoRoster.count(); i++)
+                {
+                    Console.Write("Player 2 Monster at =" + i + " is called =" + playerTwoRoster.returnMonsterAt(i).getName() + "\n");
+                    for (int b = 0; b < playerTwoRoster.returnMonsterAt(i).getmoveList().Count; b++)
+                    {
+                        Console.Write(playerTwoRoster.returnMonsterAt(i).getName() + " move number " + b+1 + " is named " + playerTwoRoster.returnMonsterAt(i).getmoveList().ElementAt(b).getName() + "\n");
+                    }
+
+                }
+                */
+            if (playerOneRoster.returnMonsterAt(0).getSpeed()> playerTwoRoster.returnMonsterAt(0).getSpeed())
+            {
+                Console.Write("Player 1 moves first, please enter the int of the move you wish to cast");
+                fightTwo(playerOneRoster.returnMonsterAt(0), playerTwoRoster.returnMonsterAt(0));
+
+            }
+            else
+            {
+                Console.Write("Player 2 moves first, please enter the int of the move you wish to cast"+"\n");
+                fightTwo(playerTwoRoster.returnMonsterAt(0), playerOneRoster.returnMonsterAt(0));
+
+
+
+
+            }
+
+               
+
+
+              
+          
+
+
+
+        }
+
+        public void fightTwo(monster attackMonster, monster defendingMonster)
+        {
+            Move toBecastMove = getMoveFromConsole(attackMonster.getmoveList());
+            castMove(attackMonster, toBecastMove, defendingMonster);
+            if (defendingMonster.currentlyLiving() == true)
+            {
+                fightTwo(defendingMonster, attackMonster);
+                Console.Write("other player's turn " + "\n");
+            }
+            else
+            {
+                Console.Write("monster has died" + "\n");
+            }
 
         }
         public void printHealth(monster attacker, monster defender)

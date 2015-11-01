@@ -78,19 +78,22 @@ namespace MoonMonsterConsole
                 Console.Write(defendingMonster.getName() + " is dead" + "\n");
             }
             Console.Write("Health after Move is cast: " + health+"\n");
-            useStamina(attackMove.getStamina());
+            useStamina(attackMove.getStamina(),attackMonster);
         }
 
-        public void useStamina(int staminaUsed)
+        public void useStamina(int staminaUsed,monster attackingMonster)
         {
-            stamina = stamina - staminaUsed;
+            stamina = attackingMonster.stamina - staminaUsed;
             if(stamina < 1)
             {
                 hasStamina = false;
            
 
             }
+           
+            
         }
+       
         public int getSpeed()
         {
             return this.speed;

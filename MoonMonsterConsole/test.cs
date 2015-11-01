@@ -51,7 +51,7 @@ namespace MoonMonsterConsole
         {
             /*
           Dragon Shep
-          id=2
+          id=1
           type=fire
           health=815
           size=80
@@ -68,11 +68,11 @@ namespace MoonMonsterConsole
 
           */
 
-            dragonShep = new monster("Dragon Sheppard",2, 815, 100, 56, 85, 50,90,80, moveList,"lava");
+            dragonShep = new monster("Dragon Sheppard",1, 815, 400, 56, 85, 50,90,80, moveList,"lava");
             List<Move> moveLister = dragonShep.getmoveList();
             Move firstmove = moveLister.ElementAt(0);
             monsterDataBase.Add(dragonShep);
-            triceritops = new monster("Triceritops",5, 900, 100, 57, 90, 50, 90,80, moveList,"plant");
+            triceritops = new monster("Triceritops",2, 900, 400, 57, 90, 50, 90,80, moveList,"plant");
             List<Move> moveListerT = dragonShep.getmoveList();
             Move secondMove = moveListerT.ElementAt(0);
             monsterDataBase.Add(triceritops);
@@ -84,6 +84,7 @@ namespace MoonMonsterConsole
             Console.ReadLine();
             */
         }
+     
         public void buildRoster()
         {
             List<monster> player1temp = new List<monster>();
@@ -117,13 +118,28 @@ namespace MoonMonsterConsole
         public void buildBattleGround()
         {
             // First battle, dragon shepard (DS) vs triceritops (T)
-            firstFight = new BattleGround(playerOne, playerTwo);
+            firstFight = new BattleGround(playerOne, playerTwo,monsterDataBase);
            
+
+        }
+        public Move getMoveFromConsole(List<Move> moveList)
+        {
+            Console.Write("     Please pick a move"+"\n");
+            for (int b = 0; b < moveList.Count; b++)
+            {
+                Console.Write("Name: " + moveList.ElementAt(b).getName() + ", Id: " + moveList.ElementAt(b).getId()+", Type: "+ moveList.ElementAt(b).getType() + ", M Damage: "+ moveList.ElementAt(b).getMaxDamage()+", M Defense: "+ moveList.ElementAt(b).getMaxDefense() + "\n");
+            }
+            string tempMove=Console.ReadLine();
+            int tempMoveInt = Convert.ToInt32(tempMove);
+            tempMoveInt = tempMoveInt - 1;
+            Console.Write("Move chosen is: " +moveList.ElementAt(tempMoveInt).getName()+ "\n");
+            Console.Write("\n");
+            return moveList.ElementAt(tempMoveInt);
 
         }
         public void testBattleManager()
         {
-            firstFight.battleManager(playerOne,playerTwo);
+            firstFight.battleManager(playerOne,playerTwo,monsterDataBase);
             Console.ReadLine();
         }
         public void testFirstFight()
@@ -152,9 +168,59 @@ namespace MoonMonsterConsole
             buildmonsters();
             buildRoster();
             buildBattleGround();
-            //testBattleManager(); //this is where we will input two rosters and then this will manage the roster interaction
-            testFirstFight(); //this runs a hard coded battle between Dragon and Triceritops
+           
+            Console.ReadLine();
+            //simulatedMain();
+           // buildRosterFromConsole(); //this wil build the rosters from console that will be fed to battle ground
+          testBattleManager(); //this is where we will input two rosters and then this will manage the roster interaction
+         //  testFirstFight(); //this runs a hard coded battle between Dragon and Triceritops
         }
 
+        public Roster buildRosterFromConsole()
+        {
+
+            List<monster> monsterList = new List<monster>();
+            Roster playerOneRoster = new Roster(monsterList);
+            Console.Write("How many Monsters does this roster need? (input an Integar)" + "\n");
+            String p1NumberOfMonsterS = Console.ReadLine();
+
+            int p1numMon = Convert.ToInt32(p1NumberOfMonsterS);
+            for (int i = 0; i < p1numMon; i++)
+            {
+                Console.Write("Pick the Id of your first monster" + "\n");
+                for (int b = 0; b < monsterDataBase.Count; b++)
+                {
+                    Console.Write(" Monster: " + monsterDataBase.ElementAt(b).getName() + ", Id: " + monsterDataBase.ElementAt(b).getId() + "\n");
+                }
+                string monsterIdString = Console.ReadLine();
+                int monsterId = Convert.ToInt32(monsterIdString);
+                monsterId = monsterId - 1;
+                playerOneRoster.addMonster(monsterDataBase.ElementAt(monsterId));
+
+            }
+            for (int i = 0; i < playerOneRoster.count(); i++)
+            {
+                Console.Write("Player 1 Monster at:" + +i + " is called = " + playerOneRoster.returnMonsterAt(i).getName() + "\n");
+                for (int b = 0; b < playerOneRoster.returnMonsterAt(i).getmoveList().Count; b++)
+                {
+                    Console.Write(playerOneRoster.returnMonsterAt(i).getName() + " move number " + b + " is named " + playerOneRoster.returnMonsterAt(i).getmoveList().ElementAt(b).getName() + "\n");
+                }
+            }
+
+
+            Console.ReadLine();
+            return playerOneRoster;
+        }
+        public void simulatedMain()
+        {
+            Roster playerOneRoster = buildRosterFromConsole();
+            Console.Write("Player Two" + "\n");
+            Roster PlayerTwoRoster = buildRosterFromConsole();
+            firstFight.battleManager(playerOneRoster, PlayerTwoRoster, monsterDataBase);
+            Console.ReadLine();
+        }
+
+        
     }
+
 }

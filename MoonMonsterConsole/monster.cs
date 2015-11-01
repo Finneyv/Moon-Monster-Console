@@ -23,13 +23,18 @@ namespace MoonMonsterConsole
         int strength = 0;
         Boolean isAlive = true;
         Boolean hasStamina = true;
+        string name;
+        //list of types
+        string type = "0";
+
 
         // this will be a list of moves that are available to the creature
+
         List<Move> moveList = new List<Move>();
 
 
        // here I am attempting to intialize the monster and give it a test value, i then expect this function to assign the value and print firstInt
-        public monster(int firstid, int fhealth, int fstamina, int flevel, int fspeed, int fagility, int fstrength,int sizet, List<Move> fmoveList)
+        public monster(string nameT,int firstid, int fhealth, int fstamina, int flevel, int fspeed, int fagility, int fstrength,int sizet, List<Move> fmoveList,string mtype)
         {
             id = firstid;
             health = fhealth;
@@ -40,7 +45,13 @@ namespace MoonMonsterConsole
             strength = fstrength;
             moveList = fmoveList;
             size = sizet;
+            type = mtype;
+            name = nameT;
 
+        }
+        public string getName()
+        {
+            return name;
         }
         public monster(int firstid, int flevel)
         {
@@ -50,7 +61,10 @@ namespace MoonMonsterConsole
             level = flevel;
             //health = maxhealth;
         }
-
+        public string getType()
+        {
+            return type;
+        }
         public void renderDamage(int damage)
         {
             health = health - damage;

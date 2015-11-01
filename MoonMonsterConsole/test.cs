@@ -36,8 +36,11 @@ namespace MoonMonsterConsole
             moveid=1
             stamina=45
                */
-            Move bite = new Move(1, 45, "normal", 700, 200, 35, 25, 60, 15, 40,25,0, 0, 0,0,0,0);
+            Move bite = new Move("bite",1, 45, "normal", 700, 200, 35, 25, 60, 15, 40,25,0, 0, 0,0,0,0);
+            Move fireBreath = new Move("fire Breath",2, 60, "lava", 950, 450, 15, 50, 50, 20, 50, 30, 85, 0, 0, 0, 0, 0);
             moveList.Add(bite);
+            moveList.Add(fireBreath);
+
            
         
 
@@ -63,11 +66,11 @@ namespace MoonMonsterConsole
 
           */
 
-            dragonShep = new monster(2, 815, 100, 56, 85, 50,90,80, moveList);
+            dragonShep = new monster("Dragon Sheppard",2, 815, 100, 56, 85, 50,90,80, moveList,"lava");
             List<Move> moveLister = dragonShep.getmoveList();
             Move firstmove = moveLister.ElementAt(0);
             monsterDataBase.Add(dragonShep);
-            triceritops = new monster(5, 900, 100, 57, 90, 50, 90,80, moveList);
+            triceritops = new monster("Triceritops",5, 900, 100, 57, 90, 50, 90,80, moveList,"plant");
             List<Move> moveListerT = dragonShep.getmoveList();
             Move secondMove = moveListerT.ElementAt(0);
             monsterDataBase.Add(triceritops);
@@ -102,10 +105,16 @@ namespace MoonMonsterConsole
         public void buildBattleGround()
         {
             BattleGround firstFight = new BattleGround(playerOne, playerTwo);
-           
-           float attack= firstFight.principalAttackValue(monsterDataBase.ElementAt(0), moveList.ElementAt(0));
-           float defense= firstFight.principalDefenseValue(monsterDataBase.ElementAt(1), moveList.ElementAt(0));
-           float netdamage = firstFight.returnNetPrincipalDamage(attack, defense);
+
+            // float attack= firstFight.principalAttackValue(monsterDataBase.ElementAt(0), moveList.ElementAt(0));
+            //float defense= firstFight.principalDefenseValue(monsterDataBase.ElementAt(1), moveList.ElementAt(0));
+            //float netdamage = firstFight.NetPrincipalDamage(attack, defense);
+
+            //            float fireNetDamage = firstFight.calcFireDamage(monsterDataBase.ElementAt(0), moveList.ElementAt(1), monsterDataBase.ElementAt(1));
+            //          Console.Write("calc fire damage " + fireNetDamage+"\n");
+            firstFight.castMove(monsterDataBase.ElementAt(0), moveList.ElementAt(0), monsterDataBase.ElementAt(1));
+            firstFight.castMove(monsterDataBase.ElementAt(0), moveList.ElementAt(1), monsterDataBase.ElementAt(1));
+
             Console.ReadLine();
         }
         public void runtest()

@@ -120,7 +120,7 @@ namespace MoonMonsterConsole
             // (T) casts Photo Beam            
             firstFight.castMove(monsterDataBase.ElementAt(1), moveList.ElementAt(2), monsterDataBase.ElementAt(0));
             firstFight.printHealth(monsterDataBase.ElementAt(0), monsterDataBase.ElementAt(1));
-            // (DS) casts bite         
+            // (DS) casts bite   and KOs triceritops      
             firstFight.castMove(monsterDataBase.ElementAt(0), moveList.ElementAt(0), monsterDataBase.ElementAt(1));
             firstFight.printHealth(monsterDataBase.ElementAt(0), monsterDataBase.ElementAt(1));
             Console.ReadLine();

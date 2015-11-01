@@ -15,8 +15,6 @@ namespace MoonMonsterConsole
             playerOneRoster = playerOneTemp;
             playerTwoRoster = playerTwoTemp;
         }
-
-
         public float principalAttackValue(monster attackMonster, Move attackMove)
         {
             float pAV = attackMove.getMaxDamage();
@@ -306,8 +304,8 @@ namespace MoonMonsterConsole
 
         public void printHealth(monster attacker, monster defender)
         {
-            Console.Write(attacker.getName() + "health = " + attacker.gethealth() + "\n");
-            Console.Write(defender.getName() + "health = " + defender.gethealth() + "\n");
+            Console.Write(attacker.getName() + " health = " + attacker.gethealth() + "\n");
+            Console.Write(defender.getName() + " health = " + defender.gethealth() + "\n");
             Console.Write("\n");
 
         }

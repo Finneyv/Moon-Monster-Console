@@ -65,13 +65,20 @@ namespace MoonMonsterConsole
         {
             return type;
         }
-        public void renderDamage(int damage)
+        public void renderDamage(int damage, monster attackMonster, monster defendingMonster, Move attackMove)
         {
+
             health = health - damage;
             if (health < 1)
             {
                 isAlive = false;
             }
+            if (defendingMonster.currentlyLiving() == false)
+            {
+                Console.Write(defendingMonster.getName() + " is dead" + "\n");
+            }
+            Console.Write("Health after Move is cast: " + health+"\n");
+            useStamina(attackMove.getStamina());
         }
 
         public void useStamina(int staminaUsed)
@@ -80,6 +87,8 @@ namespace MoonMonsterConsole
             if(stamina < 1)
             {
                 hasStamina = false;
+           
+
             }
         }
         public int getSpeed()

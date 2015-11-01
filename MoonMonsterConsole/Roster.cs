@@ -10,6 +10,10 @@ namespace MoonMonsterConsole
     {
         List<monster> monsterRoster = new List<monster>();
 
+        public int getSize()
+        {
+            return monsterRoster.Count();
+        }
 
         public Roster(List<monster> fmonsterRoster)
         {

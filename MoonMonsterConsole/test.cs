@@ -15,6 +15,7 @@ namespace MoonMonsterConsole
         Roster playerTwo;
         List<Move> moveList = new List<Move>();
         List<monster> monsterDataBase = new List<monster>();
+        BattleGround firstFight;
         public void buildmoves()
         {
             /*magic bite 
@@ -89,11 +90,21 @@ namespace MoonMonsterConsole
             player1temp.Add(monsterDataBase.ElementAt(0));
             playerOne = new Roster(player1temp);
 
+           
+            playerOne.addMonster(dragonShep);
+            playerOne.addMonster(dragonShep);
+            playerOne.addMonster(dragonShep);
+            playerOne.addMonster(triceritops);
+            playerOne.addMonster(triceritops);
+
             List<monster> player2Temp = new List<monster>();
             player2Temp.Add(monsterDataBase.ElementAt(1));
             playerTwo = new Roster(player2Temp);
-
-
+            playerTwo.addMonster(triceritops);
+            playerTwo.addMonster(triceritops);
+            playerTwo.addMonster(triceritops);
+            playerTwo.addMonster(dragonShep);
+            playerTwo.addMonster(dragonShep);
             /*
             Console.Write("playerOne roster size is " + playerOne.count() + "\n");
             Console.Write("playerTwo roster size is " + playerTwo.count() + "\n");
@@ -106,7 +117,17 @@ namespace MoonMonsterConsole
         public void buildBattleGround()
         {
             // First battle, dragon shepard (DS) vs triceritops (T)
-            BattleGround firstFight = new BattleGround(playerOne, playerTwo);
+            firstFight = new BattleGround(playerOne, playerTwo);
+           
+
+        }
+        public void testBattleManager()
+        {
+            firstFight.battleManager(playerOne,playerTwo);
+            Console.ReadLine();
+        }
+        public void testFirstFight()
+        {
             firstFight.printHealth(monsterDataBase.ElementAt(0), monsterDataBase.ElementAt(1));
             // (DS) casts bite         
             firstFight.castMove(monsterDataBase.ElementAt(0), moveList.ElementAt(0), monsterDataBase.ElementAt(1));
@@ -131,6 +152,8 @@ namespace MoonMonsterConsole
             buildmonsters();
             buildRoster();
             buildBattleGround();
+            //testBattleManager(); //this is where we will input two rosters and then this will manage the roster interaction
+            testFirstFight(); //this runs a hard coded battle between Dragon and Triceritops
         }
 
     }

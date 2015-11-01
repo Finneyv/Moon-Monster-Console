@@ -350,32 +350,29 @@ namespace MoonMonsterConsole
     
         public void iterator(Roster playerOneRoster, Roster playerTwoRoster)
         {
-            for (int a = 0; a < playerOneRoster.count(); a++)
-            {
-                if (playerOneRoster.returnMonsterAt(a).currentlyLiving() == true)
-                {
-                    
-                    for(int b = 0; b < playerTwoRoster.count(); b++)
-                    {
-                        if (playerTwoRoster.returnMonsterAt(b).currentlyLiving() == true)
-                        {
-                            Move moveCast = getMoveFromConsole(playerOneRoster.returnMonsterAt(a).getmoveList());
-                            castMove(playerOneRoster.returnMonsterAt(a), moveCast, playerTwoRoster.returnMonsterAt(b));
-                            iterator(playerTwoRoster, playerOneRoster);
-                        }
-                        else
-                        {
-                            Console.Write("player 2s " + playerTwoRoster.returnMonsterAt(b).getName() + " is dead "+"\n");
-                        }
-                    }           
 
-                }
-                else
+            for(int i = 0; i < playerOneRoster.count(); i++)
+            {
+                if (playerOneRoster.returnMonsterAt(i).currentlyLiving() == true)
                 {
-                    //
-                    Console.Write("Player 1's: " +playerOneRoster.returnMonsterAt(a) + " is Dead");
+                    for(int a = 0; a < playerTwoRoster.count(); a++)
+                    {
+                        if (playerOneRoster.returnMonsterAt(a).currentlyLiving() == true)
+                        {
+                            if (playerOneRoster.returnMonsterAt(i).getSpeed() > playerTwoRoster.returnMonsterAt(a).getSpeed())
+                            {
+                                fightTwo(playerOneRoster.returnMonsterAt(i), playerTwoRoster.returnMonsterAt(a));
+                            }
+                            else
+                            {
+                                fightTwo(playerTwoRoster.returnMonsterAt(a), playerOneRoster.returnMonsterAt(i));
+                            }
+                        }
+                    }
                 }
             }
+
+
         }
 
         public Roster buildRosterFromConsole()
@@ -417,8 +414,9 @@ namespace MoonMonsterConsole
         {
             playerOneRoster = buildRosterFromConsole(); 
             playerTwoRoster = buildRosterFromConsole();
-
-
+            Console.Write("before it" + "\n");
+            iterator(playerOneRoster, playerTwoRoster);
+            Console.ReadLine();
             /*    for (int i = 0; i < playerOneRoster.count(); i++){
                     Console.Write("Player 1 Monster at ="+i+" is called ="+playerOneRoster.returnMonsterAt(i).getName()+"\n");
                     for (int b = 0; b< playerOneRoster.returnMonsterAt(i).getmoveList().Count; b++)
@@ -436,30 +434,7 @@ namespace MoonMonsterConsole
 
                 }
                 */
-            if (playerOneRoster.returnMonsterAt(0).getSpeed()> playerTwoRoster.returnMonsterAt(0).getSpeed())
-            {
-                Console.Write("Player 1 moves first, please enter the int of the move you wish to cast");
-                fightTwo(playerOneRoster.returnMonsterAt(0), playerTwoRoster.returnMonsterAt(0));
-
-            }
-            else
-            {
-                Console.Write("Player 2 moves first, please enter the int of the move you wish to cast"+"\n");
-                fightTwo(playerTwoRoster.returnMonsterAt(0), playerOneRoster.returnMonsterAt(0));
-
-
-
-
-            }
-
-               
-
-
-              
-          
-
-
-
+         
         }
 
         public void fightTwo(monster attackMonster, monster defendingMonster)

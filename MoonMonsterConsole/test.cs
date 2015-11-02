@@ -171,9 +171,10 @@ namespace MoonMonsterConsole
            
             Console.ReadLine();
             //simulatedMain();
-           // buildRosterFromConsole(); //this wil build the rosters from console that will be fed to battle ground
-          testBattleManager(); //this is where we will input two rosters and then this will manage the roster interaction
-         //  testFirstFight(); //this runs a hard coded battle between Dragon and Triceritops
+            // buildRosterFromConsole(); //this wil build the rosters from console that will be fed to battle ground
+            testBattleManager(); //this is where we will input two rosters and then this will manage the roster interaction
+
+            //testFirstFight(); //this runs a hard coded battle between Dragon and Triceritops
         }
 
         public Roster buildRosterFromConsole()

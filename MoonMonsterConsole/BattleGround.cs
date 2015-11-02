@@ -357,11 +357,12 @@ namespace MoonMonsterConsole
                 {
                     for(int a = 0; a < playerTwoRoster.count(); a++)
                     {
-                        if (playerOneRoster.returnMonsterAt(a).currentlyLiving() == true)
+                        if (playerTwoRoster.returnMonsterAt(a).currentlyLiving() == true)
                         {
-                            if (playerOneRoster.returnMonsterAt(i).getSpeed() > playerTwoRoster.returnMonsterAt(a).getSpeed())
+                            if (playerOneRoster.returnMonsterAt(i).getSpeed() < playerTwoRoster.returnMonsterAt(a).getSpeed())
                             {
                                 fightTwo(playerOneRoster.returnMonsterAt(i), playerTwoRoster.returnMonsterAt(a));
+
                             }
                             else
                             {
@@ -371,8 +372,6 @@ namespace MoonMonsterConsole
                     }
                 }
             }
-
-
         }
 
         public Roster buildRosterFromConsole()
@@ -410,13 +409,48 @@ namespace MoonMonsterConsole
             return playerOneRoster;
         }
 
-        public void battleManager(Roster feedPlayerOne, Roster feedPlayerTwo,List<monster> monsterDataBase)
+
+        public void battleManager(Roster feedPlayerOne, Roster feedPlayerTwo, List<monster> monsterDataBase)
         {
-            playerOneRoster = buildRosterFromConsole(); 
+            Console.Write("Player One" + "\n");
+            playerOneRoster = buildRosterFromConsole();
+            Console.Write("Player Two" + "\n");
             playerTwoRoster = buildRosterFromConsole();
+
             Console.Write("before it" + "\n");
+            for (int i = 0; i < playerOneRoster.count(); i++)
+            {
+                if (playerOneRoster.returnMonsterAt(i).currentlyLiving() == true)
+                {
+                    for (int a = 0; a < playerTwoRoster.count(); a++)
+                    {
+                        if (playerTwoRoster.returnMonsterAt(a).currentlyLiving() == true)
+                        {
+                            if (playerOneRoster.returnMonsterAt(i).getSpeed() < playerTwoRoster.returnMonsterAt(a).getSpeed())
+                            {
+                                Console.Write(" Player 1 goes first " + "\n");
+                                a = playerTwoRoster.count() - 1;
+                                i = playerTwoRoster.count() - 1;
+                            }
+                            else
+                            {
+                                Console.Write(" Player 2 goes first");
+                                a = playerTwoRoster.count() - 1;
+                                i = playerTwoRoster.count() - 1;
+                            }
+                        }
+                    }
+                }
+            }
+
+
+
+
             iterator(playerOneRoster, playerTwoRoster);
             Console.ReadLine();
+
+
+
             /*    for (int i = 0; i < playerOneRoster.count(); i++){
                     Console.Write("Player 1 Monster at ="+i+" is called ="+playerOneRoster.returnMonsterAt(i).getName()+"\n");
                     for (int b = 0; b< playerOneRoster.returnMonsterAt(i).getmoveList().Count; b++)
@@ -434,21 +468,24 @@ namespace MoonMonsterConsole
 
                 }
                 */
-         
+
         }
 
         public void fightTwo(monster attackMonster, monster defendingMonster)
         {
+            
             Move toBecastMove = getMoveFromConsole(attackMonster.getmoveList());
             castMove(attackMonster, toBecastMove, defendingMonster);
             if (defendingMonster.currentlyLiving() == true)
             {
+
                 fightTwo(defendingMonster, attackMonster);
                 Console.Write("other player's turn " + "\n");
             }
             else
             {
                 Console.Write("monster has died" + "\n");
+
             }
 
         }

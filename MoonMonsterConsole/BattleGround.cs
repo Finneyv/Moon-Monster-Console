@@ -146,7 +146,7 @@ namespace MoonMonsterConsole
 
         public Move getMoveFromConsole(List<Move> moveList)
         {
-            Console.Write("     Please pick a move" + "\n");
+            Console.Write("     Please pick a move (ID#) " + "\n");
             for (int b = 0; b < moveList.Count; b++)
             {
                 Console.Write("Name: " + moveList.ElementAt(b).getName() + ", Id: " + moveList.ElementAt(b).getId() + ", Type: " + moveList.ElementAt(b).getType() + ", M Damage: " + moveList.ElementAt(b).getMaxDamage() + ", M Defense: " + moveList.ElementAt(b).getMaxDefense() + "\n");
@@ -369,6 +369,10 @@ namespace MoonMonsterConsole
                                 fightTwo(playerTwoRoster.returnMonsterAt(a), playerOneRoster.returnMonsterAt(i));
                             }
                         }
+                        else
+                        {
+                            Console.Write("Player Loses");
+                        }
                     }
                 }
             }
@@ -390,10 +394,11 @@ namespace MoonMonsterConsole
                 {
                     Console.Write(" Monster: " + monsterDataBase.ElementAt(b).getName() + ", Id: " + monsterDataBase.ElementAt(b).getId() + "\n");
                 }
-                string monsterIdString = Console.ReadLine();
-                int monsterId = Convert.ToInt32(monsterIdString);
-                monsterId = monsterId - 1;
-                playerOneRoster.addMonster(monsterDataBase.ElementAt(monsterId));
+                string monsterOrderString = Console.ReadLine();
+                int monsterOrder = Convert.ToInt32(monsterOrderString);
+                monsterOrder = monsterOrder -1;
+               
+                playerOneRoster.addMonster(monsterDataBase.ElementAt(monsterOrder));
             }
             for (int i = 0; i < playerOneRoster.count(); i++)
             {
@@ -417,8 +422,8 @@ namespace MoonMonsterConsole
             Console.Write("Player Two" + "\n");
             playerTwoRoster = buildRosterFromConsole();
 
-            Console.Write("before it" + "\n");
-            for (int i = 0; i < playerOneRoster.count(); i++)
+            
+          /*  for (int i = 0; i < playerOneRoster.count(); i++)
             {
                 if (playerOneRoster.returnMonsterAt(i).currentlyLiving() == true)
                 {
@@ -443,9 +448,7 @@ namespace MoonMonsterConsole
                 }
             }
 
-
-
-
+            */
             iterator(playerOneRoster, playerTwoRoster);
             Console.ReadLine();
 

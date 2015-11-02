@@ -68,14 +68,24 @@ namespace MoonMonsterConsole
 
           */
 
-            dragonShep = new monster("Dragon Sheppard",1, 815, 400, 56, 85, 50,90,80, moveList,"lava");
+            dragonShep = new monster("Dragon Sheppard",1, 815, 400, 11, 85, 50,90,80, moveList,"lava");
             List<Move> moveLister = dragonShep.getmoveList();
             Move firstmove = moveLister.ElementAt(0);
+          
+            triceritops = new monster("Triceritops", 2, 800, 400, 13, 70, 50, 90, 80, moveList, "plant");
+            monster prettyMermaid = new monster("Pretty Mermaid", 3, 875, 400, 13, 90, 90, 50, 40, moveList, "water");                
+            monster snowDeamon = new monster("Snow Deamon", 4, 850, 70, 13, 80, 65, 80, 70, moveList, "ice");
+            monster thunderCloud = new monster("Thunder Cloud", 5, 900, 400, 14, 90, 90, 0, 30, moveList, "lighting");
+
+           
             monsterDataBase.Add(dragonShep);
-            triceritops = new monster("Triceritops",2, 900, 400, 57, 90, 50, 90,80, moveList,"plant");
+            monsterDataBase.Add(triceritops);
+            monsterDataBase.Add(prettyMermaid);
+            monsterDataBase.Add(snowDeamon);
+            monsterDataBase.Add(thunderCloud);
             List<Move> moveListerT = dragonShep.getmoveList();
             Move secondMove = moveListerT.ElementAt(0);
-            monsterDataBase.Add(triceritops);
+            
             /*
             Console.Write("triceritpos health= " + triceritops.gethealth() + "\n");
             Console.Write("max damage for bite is " + secondMove.getMaxDamage() + "\n");

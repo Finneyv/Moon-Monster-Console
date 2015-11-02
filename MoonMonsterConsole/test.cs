@@ -69,8 +69,8 @@ namespace MoonMonsterConsole
           */
 
             dragonShep = new monster("Dragon Sheppard",1, 815, 400, 11, 85, 50,90,80, moveList,"lava");
-            List<Move> moveLister = dragonShep.getmoveList();
-            Move firstmove = moveLister.ElementAt(0);
+            //List<Move> moveLister = dragonShep.getmoveList();
+            //Move firstmove = moveLister.ElementAt(0);
           
             triceritops = new monster("Triceritops", 2, 800, 400, 13, 70, 50, 90, 80, moveList, "plant");
             monster prettyMermaid = new monster("Pretty Mermaid", 3, 875, 400, 13, 90, 90, 50, 40, moveList, "water");                
@@ -83,8 +83,8 @@ namespace MoonMonsterConsole
             monsterDataBase.Add(prettyMermaid);
             monsterDataBase.Add(snowDeamon);
             monsterDataBase.Add(thunderCloud);
-            List<Move> moveListerT = dragonShep.getmoveList();
-            Move secondMove = moveListerT.ElementAt(0);
+         //   List<Move> moveListerT = dragonShep.getmoveList();
+           // Move secondMove = moveListerT.ElementAt(0);
             
             /*
             Console.Write("triceritpos health= " + triceritops.gethealth() + "\n");
@@ -176,7 +176,7 @@ namespace MoonMonsterConsole
         {
             buildmoves();
             buildmonsters();
-            buildRoster();
+           // buildRoster();
             buildBattleGround();
            
             Console.ReadLine();

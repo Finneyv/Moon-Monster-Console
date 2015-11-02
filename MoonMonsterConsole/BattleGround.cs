@@ -116,10 +116,7 @@ namespace MoonMonsterConsole
             dSpeed = dSpeed / 100;
             dSize = dSize / 100;
             dstrength = dstrength / 100;
-            //Console.Write("dmove size after " + dSize + "\n");
-            //Console.Write("dmove speed after " + dSpeed + "\n");
-            //Console.Write("dmove strength after " + dstrength + "\n");
-            //Console.Write(" " + "\n");
+
 
             int defenderSpeed = defenseMonster.getSpeed();
             int defenderSize = defenseMonster.getSize();
@@ -129,15 +126,14 @@ namespace MoonMonsterConsole
             dstrength = dstrength * defenderStrengh;
             float total = dSpeed + dSize + dstrength;
             total = total / 100;
-         //   Console.Write(" total % effective ness=  " + total + "\n");
+       
             float levelMod = defenseMonster.getlevel();
             levelMod = levelMod / 100;
-       //     Console.Write(" level mod " + levelMod + "\n");
+    
             total = total * levelMod;
-        //    Console.Write(" total=  " + total + "\n");
+      
             pDV = pDV * total;
-            Console.Write("principal defense value =" + pDV + "\n");
-            Console.Write("\n");
+
 
            
 
@@ -175,18 +171,7 @@ namespace MoonMonsterConsole
             return netPrincipalDamage;
         }
 
-        public float calcFireDamage(monster attackMonster, Move attackMove, monster defendingMonster)
-        {
-            float damage = 0;
-            float netAttack;
-            float netDefense;
-            float fireTypeBonus = (float)1.75;
-            netAttack = principalAttackValueFire(attackMonster, attackMove);
-            netDefense = principalDefenseValue(defendingMonster, attackMove);
-            damage = netAttack - netDefense;
-            damage = typeBonus(fireTypeBonus, damage);
-            return damage;
-        }
+
 
         public float specailAttack(monster defendingMonster, Move attackMove, float damage)
         {
@@ -227,7 +212,7 @@ namespace MoonMonsterConsole
                 }
                 if (defendingMonster.getType() == "lava")
                 {
-                    
+
                     damage = 1;
                     keepTrack = 1;
                     Console.Write("check lava on lava" + "\n");
@@ -235,6 +220,8 @@ namespace MoonMonsterConsole
                 }
 
             }
+
+
             if (attackMove.getType() == "plant")
                 Console.Write("check plant on first" + "\n");
             {
@@ -271,26 +258,132 @@ namespace MoonMonsterConsole
                     Console.Write("check plant on water" + "\n");
                     return damage;
                 }
-
-
-
-
+                if (defendingMonster.getType() == "plant")
+                {
+                    Console.Write("check plant on fire " + "\n");
+                    float fireTypeBonus = (float)1;
+                    damage = typeBonus(fireTypeBonus, damage);
+                    keepTrack = 1;
+                    return damage;
+                }
             }
 
-            if (keepTrack == 0)
+            if (attackMove.getType() == "ice")
+
             {
-                Console.Write("something went wrong with a specail move mult" + "\n");
-                return damage;
+                if (defendingMonster.getType() == "rock")
+                {
+                    float fireTypeBonus = (float)2;
+                    damage = typeBonus(fireTypeBonus, damage);
+                    keepTrack = 1;
+                    Console.Write("check ice on rock" + "\n");
+                    return damage;
+                }
+                if (defendingMonster.getType() == "lava")
+                {
+                    Console.Write("check plant on fire " + "\n");
+                    float fireTypeBonus = (float).7;
+                    damage = typeBonus(fireTypeBonus, damage);
+                    keepTrack = 1;
+                    Console.Write("check ice on lava" + "\n");
+                    return damage;
+                }
+                if (defendingMonster.getType() == "ice")
+                {
+                    float fireTypeBonus = (float)1;
+                    damage = typeBonus(fireTypeBonus, damage);
+                    keepTrack = 1;
+                    Console.Write("check ice on ice" + "\n");
+                    return damage;
+                }
+                if (defendingMonster.getType() == "water")
+                {
+                    float fireTypeBonus = (float)1.2;
+                    damage = typeBonus(fireTypeBonus, damage);
+                    keepTrack = 1;
+                    Console.Write("check ice on water" + "\n");
+                    return damage;
+                }
+                if (defendingMonster.getType() == "plant")
+                {
+                    Console.Write("check ice on fire " + "\n");
+                    float fireTypeBonus = (float)2;
+                    damage = typeBonus(fireTypeBonus, damage);
+                    keepTrack = 1;
+                    return damage;
+                }
+
             }
 
-            else
-            {
-               
-                Console.Write("something else went wrong with a specail move mult" + "\n");
-                return damage;
+
+
+                if (attackMove.getType() == "Rock")
+
+                {
+                    if (defendingMonster.getType() == "rock")
+                    {
+                        float fireTypeBonus = (float)2;
+                        damage = typeBonus(fireTypeBonus, damage);
+                        keepTrack = 1;
+                        Console.Write("check rock on rock" + "\n");
+                        return damage;
+                    }
+                    if (defendingMonster.getType() == "lava")
+                    {
+                        Console.Write("check plant on fire " + "\n");
+                        float fireTypeBonus = (float)1.8;
+                        damage = typeBonus(fireTypeBonus, damage);
+                        keepTrack = 1;
+                        Console.Write("check rock on lava" + "\n");
+                        return damage;
+                    }
+                    if (defendingMonster.getType() == "ice")
+                    {
+                        float fireTypeBonus = (float)1;
+                        damage = typeBonus(fireTypeBonus, damage);
+                        keepTrack = 1;
+                        Console.Write("check rock on ice" + "\n");
+                        return damage;
+                    }
+                    if (defendingMonster.getType() == "water")
+                    {
+                        float fireTypeBonus = (float).5;
+                        damage = typeBonus(fireTypeBonus, damage);
+                        keepTrack = 1;
+                        Console.Write("check rock on water" + "\n");
+                        return damage;
+                    }
+                    if (defendingMonster.getType() == "plant")
+                    {
+                        Console.Write("check rock on plant " + "\n");
+                        float fireTypeBonus = (float)2;
+                        damage = typeBonus(fireTypeBonus, damage);
+                        keepTrack = 1;
+                        return damage;
+                    }
+
+
+                }
+
+                //Lighting,water
+
+
+                if (keepTrack == 0)
+                {
+                    Console.Write("something went wrong with a specail move mult" + "\n");
+                    return damage;
+                }
+
+                else
+                {
+
+                    Console.Write("something else went wrong with a specail move mult" + "\n");
+                    return damage;
+                }
+
             }
-            
-        }
+        
+        
         public List<monster> castMove(monster attackMonster, Move attackMove, monster defendingMonster)
         {
 
@@ -311,20 +404,21 @@ namespace MoonMonsterConsole
             float netDefense;
 
                 Console.Write("Move Name: " + attackMove.getName() +", Stamina required: "+attackMove.getStamina()+"\n");
-                Console.Write("Attacker: " + attackMonster.getName() + ", Level: " + attackMonster.getlevel()+", Stamina: " + attackMonster.getstamina() + "\n");
-                Console.Write("Defender: " + defendingMonster.getName() + ", Level: " + defendingMonster.getlevel() + ", Stamina: "+defendingMonster.getstamina() +"\n");
+                Console.Write("Attacker: " + attackMonster.getName() + ", Level: " + attackMonster.getlevel()+" Health: "+attackMonster.gethealth()+", Stamina: " + attackMonster.getstamina() + "\n");
+                Console.Write("Defender: " + defendingMonster.getName() + ", Level: " + defendingMonster.getlevel()+" Health: "+defendingMonster.gethealth() + ", Stamina: "+defendingMonster.getstamina() +"\n");
 
             netAttack = principalAttackValue(attackMonster, attackMove);
             netDefense = principalDefenseValue(defendingMonster, attackMove);
             damage = netAttack - netDefense;
 
-            if (attackMove.getType() == "normal")
+            if (attackMove.getType() != "normal")
             {
-                Console.Write("check Normal " + "\n");
+                damage = specailAttack(defendingMonster, attackMove, damage);
             }
             else
             {
-                damage = specailAttack(defendingMonster, attackMove, damage);
+               
+            
             }
 
             // Before damage is rendered the random varible must be applied 
@@ -332,15 +426,14 @@ namespace MoonMonsterConsole
             //effective all the time, then E = Level / 300, such that at level 100 a creature will be completely effective while
             //  a creature at 1 will be .661.Then another variable R will be created. R will be a number that is a random 
             //  number between the range of 0:X where x = 1 - (.2 / 3 + E), 
-
-            int roundedDamage = (int)damage;
-                Console.Write("rounded damage " + roundedDamage + "\n");
-                Console.Write("health of defender before " + defendingMonster.gethealth() + "\n");
-
-            defendingMonster.renderDamage(roundedDamage,attackMonster, defendingMonster,attackMove);
-          //  attackMonster.useStamina(attackMove.getStamina());
-
            
+
+            int level=attackMonster.getlevel();
+            float tempLevel = (float)level;
+            tempLevel = tempLevel / 100;
+            damage = damage * tempLevel;
+            int roundedDamage = (int)damage;
+            defendingMonster.renderDamage(roundedDamage,attackMonster, defendingMonster,attackMove);      
                 attackDefenderList.Add(attackMonster);
                 attackDefenderList.Add(defendingMonster);
 
@@ -359,7 +452,7 @@ namespace MoonMonsterConsole
                     {
                         if (playerTwoRoster.returnMonsterAt(a).currentlyLiving() == true)
                         {
-                            if (playerOneRoster.returnMonsterAt(i).getSpeed() < playerTwoRoster.returnMonsterAt(a).getSpeed())
+                            if (playerOneRoster.returnMonsterAt(i).getSpeed() > playerTwoRoster.returnMonsterAt(a).getSpeed())
                             {
                                 fightTwo(playerOneRoster.returnMonsterAt(i), playerTwoRoster.returnMonsterAt(a));
 
@@ -392,7 +485,7 @@ namespace MoonMonsterConsole
                 Console.Write("Pick the Id of your first monster" + "\n");
                 for (int b = 0; b < monsterDataBase.Count; b++)
                 {
-                    Console.Write(" Monster: " + monsterDataBase.ElementAt(b).getName() + ", Id: " + monsterDataBase.ElementAt(b).getId() + "\n");
+                    Console.Write(" Monster: " + monsterDataBase.ElementAt(b).getName() + ", Id: " + monsterDataBase.ElementAt(b).getId() + ", Level:  " + monsterDataBase.ElementAt(b).getlevel() + ", Type: " + monsterDataBase.ElementAt(b).getType()+", Health: "+ monsterDataBase.ElementAt(b).gethealth() + "\n");
                 }
                 string monsterOrderString = Console.ReadLine();
                 int monsterOrder = Convert.ToInt32(monsterOrderString);
@@ -422,61 +515,21 @@ namespace MoonMonsterConsole
             Console.Write("Player Two" + "\n");
             playerTwoRoster = buildRosterFromConsole();
 
-            
-          /*  for (int i = 0; i < playerOneRoster.count(); i++)
-            {
-                if (playerOneRoster.returnMonsterAt(i).currentlyLiving() == true)
-                {
-                    for (int a = 0; a < playerTwoRoster.count(); a++)
-                    {
-                        if (playerTwoRoster.returnMonsterAt(a).currentlyLiving() == true)
-                        {
-                            if (playerOneRoster.returnMonsterAt(i).getSpeed() < playerTwoRoster.returnMonsterAt(a).getSpeed())
-                            {
-                                Console.Write(" Player 1 goes first " + "\n");
-                                a = playerTwoRoster.count() - 1;
-                                i = playerTwoRoster.count() - 1;
-                            }
-                            else
-                            {
-                                Console.Write(" Player 2 goes first");
-                                a = playerTwoRoster.count() - 1;
-                                i = playerTwoRoster.count() - 1;
-                            }
-                        }
-                    }
-                }
-            }
-
-            */
+         
             iterator(playerOneRoster, playerTwoRoster);
             Console.ReadLine();
 
 
 
-            /*    for (int i = 0; i < playerOneRoster.count(); i++){
-                    Console.Write("Player 1 Monster at ="+i+" is called ="+playerOneRoster.returnMonsterAt(i).getName()+"\n");
-                    for (int b = 0; b< playerOneRoster.returnMonsterAt(i).getmoveList().Count; b++)
-                    {
-                        Console.Write(playerOneRoster.returnMonsterAt(i).getName() + " move number " + b+1 + " is named " + playerOneRoster.returnMonsterAt(i).getmoveList().ElementAt(b).getName()+"\n");
-                    }
-                }
-                for (int i = 0; i < playerTwoRoster.count(); i++)
-                {
-                    Console.Write("Player 2 Monster at =" + i + " is called =" + playerTwoRoster.returnMonsterAt(i).getName() + "\n");
-                    for (int b = 0; b < playerTwoRoster.returnMonsterAt(i).getmoveList().Count; b++)
-                    {
-                        Console.Write(playerTwoRoster.returnMonsterAt(i).getName() + " move number " + b+1 + " is named " + playerTwoRoster.returnMonsterAt(i).getmoveList().ElementAt(b).getName() + "\n");
-                    }
-
-                }
-                */
 
         }
 
         public void fightTwo(monster attackMonster, monster defendingMonster)
         {
-            
+            Console.Write("\n");
+            Console.Write("Attacker: " + attackMonster.getName() + ", Level: " + attackMonster.getlevel() + " Health: " + attackMonster.gethealth() + ", Stamina: " + attackMonster.getstamina() + "\n");
+            Console.Write("Defender: " + defendingMonster.getName() + ", Level: " + defendingMonster.getlevel() + " Health: " + defendingMonster.gethealth() + ", Stamina: " + defendingMonster.getstamina() + "\n");
+
             Move toBecastMove = getMoveFromConsole(attackMonster.getmoveList());
             castMove(attackMonster, toBecastMove, defendingMonster);
             if (defendingMonster.currentlyLiving() == true)

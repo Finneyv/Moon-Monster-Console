@@ -44,10 +44,11 @@ namespace MoonMonsterConsole
             agility = fagility;
             strength = fstrength;
             moveList = fmoveList;
+
             size = sizet;
             type = mtype;
             name = nameT;
-
+            calculateMonster();
         }
         public string getName()
         {
@@ -60,6 +61,18 @@ namespace MoonMonsterConsole
             id = firstid;
             level = flevel;
             //health = maxhealth;
+        }
+        public void calculateMonster()  {
+            List<Move> moveListMonster = new List<Move>();
+            float tempHealth;
+            float tempLevel=(float) level;
+            tempLevel = tempLevel / 100;
+
+            tempHealth = health * tempLevel;
+            health = Convert.ToInt32(tempHealth);
+             
+             
+       
         }
         public string getType()
         {
@@ -77,7 +90,7 @@ namespace MoonMonsterConsole
             {
                 Console.Write(defendingMonster.getName() + " is dead" + "\n");
             }
-            Console.Write("Health after Move is cast: " + health+"\n");
+          
             useStamina(attackMove.getStamina(),attackMonster);
         }
 

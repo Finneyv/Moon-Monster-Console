@@ -79,7 +79,7 @@ namespace MoonMonsterConsole
             triceritops = new Monster("Triceritops", 2, 800, 400, 13, 70, 50, 90, 80, moveList, "plant");
             Monster prettyMermaid = new Monster("Pretty Mermaid", 3, 875, 400, 13, 90, 90, 50, 40, moveList, "water");                
             Monster snowDeamon = new Monster("Snow Deamon", 4, 850, 70, 13, 80, 65, 80, 70, moveList, "ice");
-            Monster thunderCloud = new Monster("Thunder Cloud", 5, 900, 400, 14, 90, 90, 0, 30, moveList, "lighting");
+            Monster thunderCloud = new Monster("Thunder Cloud", 5, 900, 400, 14, 90, 90, 0, 30, moveList, "light");
 
            
             monsterDataBase.Add(dragonShep);

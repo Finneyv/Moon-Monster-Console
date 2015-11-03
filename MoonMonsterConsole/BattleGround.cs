@@ -316,7 +316,7 @@ namespace MoonMonsterConsole
 
 
 
-                if (attackMove.getType() == "Rock")
+                if (attackMove.getType() == "rock")
 
                 {
                     if (defendingMonster.getType() == "rock")
@@ -364,10 +364,106 @@ namespace MoonMonsterConsole
 
                 }
 
-                //Lighting,water
+
+            if (attackMove.getType() == "light")
+
+            {
+                if (defendingMonster.getType() == "rock")
+                {
+                    float fireTypeBonus = (float).5;
+                    damage = typeBonus(fireTypeBonus, damage);
+                    keepTrack = 1;
+                    Console.Write("check rock on light" + "\n");
+                    return damage;
+                }
+                if (defendingMonster.getType() == "lava")
+                {
+                    Console.Write("check plant on fire " + "\n");
+                    float fireTypeBonus = (float)1.8;
+                    damage = typeBonus(fireTypeBonus, damage);
+                    keepTrack = 1;
+                    Console.Write("check light on lava" + "\n");
+                    return damage;
+                }
+                if (defendingMonster.getType() == "ice")
+                {
+                    float fireTypeBonus = (float)1.8;
+                    damage = typeBonus(fireTypeBonus, damage);
+                    keepTrack = 1;
+                    Console.Write("check light on ice" + "\n");
+                    return damage;
+                }
+                if (defendingMonster.getType() == "water")
+                {
+                    float fireTypeBonus = (float)2;
+                    damage = typeBonus(fireTypeBonus, damage);
+                    keepTrack = 1;
+                    Console.Write("check light on water" + "\n");
+                    return damage;
+                }
+                if (defendingMonster.getType() == "plant")
+                {
+                    Console.Write("check light on plant " + "\n");
+                    float fireTypeBonus = (float)1;
+                    damage = typeBonus(fireTypeBonus, damage);
+                    keepTrack = 1;
+                    return damage;
+                }
 
 
-                if (keepTrack == 0)
+            }
+
+            if (attackMove.getType() == "water")
+
+            {
+                if (defendingMonster.getType() == "rock")
+                {
+                    float fireTypeBonus = (float)2;
+                    damage = typeBonus(fireTypeBonus, damage);
+                    keepTrack = 1;
+                    Console.Write("check water on rock" + "\n");
+                    return damage;
+                }
+                if (defendingMonster.getType() == "lava")
+                {
+                    Console.Write("check plant on fire " + "\n");
+                    float fireTypeBonus = (float)1.8;
+                    damage = typeBonus(fireTypeBonus, damage);
+                    keepTrack = 1;
+                    Console.Write("check water on lava" + "\n");
+                    return damage;
+                }
+                if (defendingMonster.getType() == "ice")
+                {
+                    float fireTypeBonus = (float)1;
+                    damage = typeBonus(fireTypeBonus, damage);
+                    keepTrack = 1;
+                    Console.Write("check rock on ice" + "\n");
+                    return damage;
+                }
+                if (defendingMonster.getType() == "water")
+                {
+                    float fireTypeBonus = (float)1;
+                    damage = typeBonus(fireTypeBonus, damage);
+                    keepTrack = 1;
+                    Console.Write("check water on water" + "\n");
+                    return damage;
+                }
+                if (defendingMonster.getType() == "plant")
+                {
+                    Console.Write("check water on plant " + "\n");
+                    float fireTypeBonus = (float).5;
+                    damage = typeBonus(fireTypeBonus, damage);
+                    keepTrack = 1;
+                    return damage;
+                }
+
+
+            }
+
+
+
+            if (keepTrack == 0)
                 {
                     Console.Write("something went wrong with a specail move mult" + "\n");
                     return damage;
@@ -521,8 +617,8 @@ namespace MoonMonsterConsole
         public void fightTwo(Monster attackMonster, Monster defendingMonster)
         {
             Console.Write("\n");
-            Console.Write("Attacker: " + attackMonster.getName() + ", Level: " + attackMonster.getlevel() + " Health: " + attackMonster.gethealth() + ", Stamina: " + attackMonster.getstamina() + "\n");
-            Console.Write("Defender: " + defendingMonster.getName() + ", Level: " + defendingMonster.getlevel() + " Health: " + defendingMonster.gethealth() + ", Stamina: " + defendingMonster.getstamina() + "\n");
+            Console.Write("Attacker: " + attackMonster.getName() + ", Level: " + attackMonster.getlevel() + " Health: " + attackMonster.gethealth() + ", Stamina: " + attackMonster.getstamina()+", Type: "+attackMonster.getType() + "\n");
+            Console.Write("Defender: " + defendingMonster.getName() + ", Level: " + defendingMonster.getlevel() + " Health: " + defendingMonster.gethealth() + ", Stamina: " + defendingMonster.getstamina()+ ", Type: "+defendingMonster.getType() + "\n");
 
             Move toBecastMove = getMoveFromConsole(attackMonster.getmoveList());
             castMove(attackMonster, toBecastMove, defendingMonster);

@@ -8,14 +8,14 @@ namespace MoonMonsterConsole
 {
     class Roster
     {
-        List<monster> monsterRoster = new List<monster>();
+        List<Monster> monsterRoster = new List<Monster>();
 
         public int getSize()
         {
             return monsterRoster.Count();
         }
 
-        public Roster(List<monster> fmonsterRoster)
+        public Roster(List<Monster> fmonsterRoster)
         {
             monsterRoster = fmonsterRoster;
         }
@@ -25,9 +25,9 @@ namespace MoonMonsterConsole
 
         }
 
-        public monster returnMonsterAt(int index)
+        public Monster returnMonsterAt(int index)
         {
-            monster toBeReturned = monsterRoster.ElementAt(index);
+            Monster toBeReturned = monsterRoster.ElementAt(index);
             //monsterRoster.ElementAt(index).getmoveList().ElementAt(0).getMaxDamage();
             return toBeReturned;
         }
@@ -36,12 +36,12 @@ namespace MoonMonsterConsole
             int damage=monsterRoster.ElementAt(index).getmoveList().ElementAt(0).getMaxDamage();
             return damage;
         }
-        public void addMonster(monster newMonster)
+        public void addMonster(Monster newMonster)
         {
             monsterRoster.Add(newMonster);
         }
 
-        public int getIndex(monster currentMonster)
+        public int getIndex(Monster currentMonster)
         {
             int index = monsterRoster.IndexOf(currentMonster);
             return index;
@@ -49,12 +49,12 @@ namespace MoonMonsterConsole
 
         public void updateRoster(int startingIndex, int finalIndex)
         {
-            monster item = monsterRoster[startingIndex];
+            Monster item = monsterRoster[startingIndex];
             monsterRoster.Remove(item);
             monsterRoster.Insert(finalIndex, item);
         }
         
-        public void removeMonster(monster unwantedMonster)
+        public void removeMonster(Monster unwantedMonster)
         {
             monsterRoster.Remove(unwantedMonster);
         }

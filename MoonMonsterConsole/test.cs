@@ -9,12 +9,12 @@ namespace MoonMonsterConsole
 
     class test
     {
-        monster dragonShep;
-        monster triceritops;
+        Monster dragonShep;
+        Monster triceritops;
         Roster playerOne;
         Roster playerTwo;
         List<Move> moveList = new List<Move>();
-        List<monster> monsterDataBase = new List<monster>();
+        List<Monster> monsterDataBase = new List<Monster>();
         BattleGround firstFight;
         public void buildmoves()
         {
@@ -37,9 +37,9 @@ namespace MoonMonsterConsole
             moveid=1
             stamina=45
                */
-            Move bite = new Move("bite",1, 45, "normal", 700, 200, 35, 25, 60, 15, 40,25,0, 0, 0,0,0,0);
-            Move fireBreath = new Move("fire Breath",2, 60, "lava", 950, 450, 15, 50, 50, 20, 50, 30, 85, 0, 0, 0, 0, 0);
-            Move photoBeam = new Move("photoBeam", 3, 60, "plant", 750, 200, 35, 40, 60, 25, 40, 25, 0, 0, 85, 0, 0, 0);
+            Move bite = new Move("bite",1, 5, "normal", 700, 200, 35, 25, 60, 15, 40,25,0, 0, 0,0,0,0);
+            Move fireBreath = new Move("fire Breath",2, 0, "lava", 950, 450, 15, 50, 50, 20, 50, 30, 85, 0, 0, 0, 0, 0);
+            Move photoBeam = new Move("photoBeam", 3, 6, "plant", 750, 200, 35, 40, 60, 25, 40, 25, 0, 0, 85, 0, 0, 0);
             moveList.Add(bite);
             moveList.Add(fireBreath);
             moveList.Add(photoBeam);
@@ -47,7 +47,11 @@ namespace MoonMonsterConsole
         
 
     }
-        public void buildmonsters()
+        public void buildMonsterFromConsole()
+        {
+
+        }
+        public void buildMonsters()
         {
             /*
           Dragon Shep
@@ -68,14 +72,14 @@ namespace MoonMonsterConsole
 
           */
 
-            dragonShep = new monster("Dragon Sheppard",1, 815, 400, 11, 85, 50,90,80, moveList,"lava");
+            dragonShep = new Monster("Dragon Sheppard",1, 815, 400, 11, 85, 50,90,80, moveList,"lava");
             //List<Move> moveLister = dragonShep.getmoveList();
             //Move firstmove = moveLister.ElementAt(0);
           
-            triceritops = new monster("Triceritops", 2, 800, 400, 13, 70, 50, 90, 80, moveList, "plant");
-            monster prettyMermaid = new monster("Pretty Mermaid", 3, 875, 400, 13, 90, 90, 50, 40, moveList, "water");                
-            monster snowDeamon = new monster("Snow Deamon", 4, 850, 70, 13, 80, 65, 80, 70, moveList, "ice");
-            monster thunderCloud = new monster("Thunder Cloud", 5, 900, 400, 14, 90, 90, 0, 30, moveList, "lighting");
+            triceritops = new Monster("Triceritops", 2, 800, 400, 13, 70, 50, 90, 80, moveList, "plant");
+            Monster prettyMermaid = new Monster("Pretty Mermaid", 3, 875, 400, 13, 90, 90, 50, 40, moveList, "water");                
+            Monster snowDeamon = new Monster("Snow Deamon", 4, 850, 70, 13, 80, 65, 80, 70, moveList, "ice");
+            Monster thunderCloud = new Monster("Thunder Cloud", 5, 900, 400, 14, 90, 90, 0, 30, moveList, "lighting");
 
            
             monsterDataBase.Add(dragonShep);
@@ -97,7 +101,7 @@ namespace MoonMonsterConsole
      
         public void buildRoster()
         {
-            List<monster> player1temp = new List<monster>();
+            List<Monster> player1temp = new List<Monster>();
             player1temp.Add(monsterDataBase.ElementAt(0));
             playerOne = new Roster(player1temp);
 
@@ -108,7 +112,7 @@ namespace MoonMonsterConsole
             playerOne.addMonster(triceritops);
             playerOne.addMonster(triceritops);
 
-            List<monster> player2Temp = new List<monster>();
+            List<Monster> player2Temp = new List<Monster>();
             player2Temp.Add(monsterDataBase.ElementAt(1));
             playerTwo = new Roster(player2Temp);
             playerTwo.addMonster(triceritops);
@@ -175,7 +179,7 @@ namespace MoonMonsterConsole
         public void runtest()
         {
             buildmoves();
-            buildmonsters();
+            buildMonsters();
            // buildRoster();
             buildBattleGround();
            
@@ -190,7 +194,7 @@ namespace MoonMonsterConsole
         public Roster buildRosterFromConsole()
         {
 
-            List<monster> monsterList = new List<monster>();
+            List<Monster> monsterList = new List<Monster>();
             Roster playerOneRoster = new Roster(monsterList);
             Console.Write("How many Monsters does this roster need? (input an Integar)" + "\n");
             String p1NumberOfMonsterS = Console.ReadLine();
@@ -198,7 +202,7 @@ namespace MoonMonsterConsole
             int p1numMon = Convert.ToInt32(p1NumberOfMonsterS);
             for (int i = 0; i < p1numMon; i++)
             {
-                Console.Write("Pick the Id of your first monster" + "\n");
+                Console.Write("Pick the Id of your first Monster" + "\n");
                 for (int b = 0; b < monsterDataBase.Count; b++)
                 {
                     Console.Write(" Monster: " + monsterDataBase.ElementAt(b).getName() + ", Id: " + monsterDataBase.ElementAt(b).getId() + "\n");

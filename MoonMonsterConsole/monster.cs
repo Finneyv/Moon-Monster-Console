@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoonMonsterConsole
 {
-    public class monster
+    public class Monster
     {
 
         // The first variable is a test
@@ -33,8 +33,8 @@ namespace MoonMonsterConsole
         List<Move> moveList = new List<Move>();
 
 
-       // here I am attempting to intialize the monster and give it a test value, i then expect this function to assign the value and print firstInt
-        public monster(string nameT,int firstid, int fhealth, int fstamina, int flevel, int fspeed, int fagility, int fstrength,int sizet, List<Move> fmoveList,string mtype)
+       // here I am attempting to intialize the Monster and give it a test value, i then expect this function to assign the value and print firstInt
+        public Monster(string nameT,int firstid, int fhealth, int fstamina, int flevel, int fspeed, int fagility, int fstrength,int sizet, List<Move> fmoveList,string mtype)
         {
             id = firstid;
             health = fhealth;
@@ -54,7 +54,7 @@ namespace MoonMonsterConsole
         {
             return name;
         }
-        public monster(int firstid, int flevel)
+        public Monster(int firstid, int flevel)
         {
             //this function will generate monsters based on the parameters given
             int maxhealth;
@@ -78,7 +78,7 @@ namespace MoonMonsterConsole
         {
             return type;
         }
-        public void renderDamage(int damage, monster attackMonster, monster defendingMonster, Move attackMove)
+        public void renderDamage(int damage, Monster attackMonster, Monster defendingMonster, Move attackMove)
         {
 
             health = health - damage;
@@ -94,7 +94,7 @@ namespace MoonMonsterConsole
             useStamina(attackMove.getStamina(),attackMonster);
         }
 
-        public void useStamina(int staminaUsed,monster attackingMonster)
+        public void useStamina(int staminaUsed,Monster attackingMonster)
         {
             stamina = attackingMonster.stamina - staminaUsed;
             if(stamina < 1)

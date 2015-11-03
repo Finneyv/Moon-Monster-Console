@@ -10,14 +10,14 @@ namespace MoonMonsterConsole
     {
         Roster playerOneRoster;
         Roster playerTwoRoster;
-        List<monster> monsterDataBase;
-        public BattleGround(Roster playerOneTemp, Roster playerTwoTemp, List<monster> monsterDataBaseFeed)
+        List<Monster> monsterDataBase;
+        public BattleGround(Roster playerOneTemp, Roster playerTwoTemp, List<Monster> monsterDataBaseFeed)
         {
             playerOneRoster = playerOneTemp;
             playerTwoRoster = playerTwoTemp;
             monsterDataBase = monsterDataBaseFeed;
         }
-        public float principalAttackValue(monster attackMonster, Move attackMove)
+        public float principalAttackValue(Monster attackMonster, Move attackMove)
         {
             float pAV = attackMove.getMaxDamage();
 
@@ -56,7 +56,7 @@ namespace MoonMonsterConsole
             Console.Write("\n");
             return pAV;
         }
-        public float principalAttackValueFire(monster attackMonster, Move attackMove)
+        public float principalAttackValueFire(Monster attackMonster, Move attackMove)
         {
             float pAV = attackMove.getMaxDamage();
 
@@ -101,7 +101,7 @@ namespace MoonMonsterConsole
             return pAV;
         }
 
-        public float principalDefenseValue(monster defenseMonster, Move attackMove)
+        public float principalDefenseValue(Monster defenseMonster, Move attackMove)
         {
             float pDV = attackMove.getMaxDefense();
           //  Console.Write("  max d =" + pDV + "\n");
@@ -148,6 +148,7 @@ namespace MoonMonsterConsole
                 Console.Write("Name: " + moveList.ElementAt(b).getName() + ", Id: " + moveList.ElementAt(b).getId() + ", Type: " + moveList.ElementAt(b).getType() + ", M Damage: " + moveList.ElementAt(b).getMaxDamage() + ", M Defense: " + moveList.ElementAt(b).getMaxDefense() + "\n");
             }
             string tempMove = Console.ReadLine();
+            
             int tempMoveInt = Convert.ToInt32(tempMove);
             tempMoveInt = tempMoveInt - 1;
             Console.Write("Move chosen is: " + moveList.ElementAt(tempMoveInt).getName() + "\n");
@@ -171,9 +172,7 @@ namespace MoonMonsterConsole
             return netPrincipalDamage;
         }
 
-
-
-        public float specailAttack(monster defendingMonster, Move attackMove, float damage)
+        public float specailAttack(Monster defendingMonster, Move attackMove, float damage)
         {
             int keepTrack = 0;
             if (attackMove.getType() == "lava")
@@ -373,21 +372,17 @@ namespace MoonMonsterConsole
                     Console.Write("something went wrong with a specail move mult" + "\n");
                     return damage;
                 }
-
                 else
                 {
-
                     Console.Write("something else went wrong with a specail move mult" + "\n");
                     return damage;
                 }
-
             }
-        
-        
-        public List<monster> castMove(monster attackMonster, Move attackMove, monster defendingMonster)
+                
+        public List<Monster> castMove(Monster attackMonster, Move attackMove, Monster defendingMonster)
         {
 
-            List<monster> attackDefenderList = new List<monster>();
+            List<Monster> attackDefenderList = new List<Monster>();
             int staminaRequired = attackMove.getStamina();
             int staminaPossessed = attackMonster.getstamina();
             if (staminaRequired > staminaPossessed)
@@ -474,7 +469,7 @@ namespace MoonMonsterConsole
         public Roster buildRosterFromConsole()
         {
 
-            List<monster> monsterList = new List<monster>();
+            List<Monster> monsterList = new List<Monster>();
             Roster playerOneRoster = new Roster(monsterList);
             Console.Write("How many Monsters does this roster need? (input an Integar)" + "\n");
             String p1NumberOfMonsterS = Console.ReadLine();
@@ -482,7 +477,7 @@ namespace MoonMonsterConsole
             int p1numMon = Convert.ToInt32(p1NumberOfMonsterS);
             for (int i = 0; i < p1numMon; i++)
             {
-                Console.Write("Pick the Id of your first monster" + "\n");
+                Console.Write("Pick the Id of your first Monster" + "\n");
                 for (int b = 0; b < monsterDataBase.Count; b++)
                 {
                     Console.Write(" Monster: " + monsterDataBase.ElementAt(b).getName() + ", Id: " + monsterDataBase.ElementAt(b).getId() + ", Level:  " + monsterDataBase.ElementAt(b).getlevel() + ", Type: " + monsterDataBase.ElementAt(b).getType()+", Health: "+ monsterDataBase.ElementAt(b).gethealth() + "\n");
@@ -507,8 +502,7 @@ namespace MoonMonsterConsole
             return playerOneRoster;
         }
 
-
-        public void battleManager(Roster feedPlayerOne, Roster feedPlayerTwo, List<monster> monsterDataBase)
+        public void battleManager(Roster feedPlayerOne, Roster feedPlayerTwo, List<Monster> monsterDataBase)
         {
             Console.Write("Player One" + "\n");
             playerOneRoster = buildRosterFromConsole();
@@ -524,7 +518,7 @@ namespace MoonMonsterConsole
 
         }
 
-        public void fightTwo(monster attackMonster, monster defendingMonster)
+        public void fightTwo(Monster attackMonster, Monster defendingMonster)
         {
             Console.Write("\n");
             Console.Write("Attacker: " + attackMonster.getName() + ", Level: " + attackMonster.getlevel() + " Health: " + attackMonster.gethealth() + ", Stamina: " + attackMonster.getstamina() + "\n");
@@ -540,12 +534,12 @@ namespace MoonMonsterConsole
             }
             else
             {
-                Console.Write("monster has died" + "\n");
+                Console.Write("Monster has died" + "\n");
 
             }
 
         }
-        public void printHealth(monster attacker, monster defender)
+        public void printHealth(Monster attacker, Monster defender)
         {
             Console.Write(attacker.getName() + " health = " + attacker.gethealth() + "\n");
             Console.Write(defender.getName() + " health = " + defender.gethealth() + "\n");

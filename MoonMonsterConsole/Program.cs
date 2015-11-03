@@ -13,7 +13,7 @@ namespace MoonMonsterConsole
     class Program
     {
         /* static void test() {
-             monster jack = new monster(12);
+             Monster jack = new Monster(12);
              jack.print();
              Console.ReadLine();
          }*/

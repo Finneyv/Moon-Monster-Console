@@ -133,7 +133,7 @@ namespace MoonMonsterConsole
             Console.Write("first int= "+firstInt);
         }
 
-        public int gethealth()
+        public int getHealth()
         {
             return health;
         }
@@ -147,27 +147,27 @@ namespace MoonMonsterConsole
             return id;
         }
 
-        public int getstamina()
+        public int getStamina()
         {
             return stamina;
         }
 
-        public int getlevel()
+        public int getLevel()
         {
             return level;
         }
 
-        public int getagility()
+        public int getAgility()
         {
             return agility;
         }
 
-        public int getstrength()
+        public int getStrength()
         {
             return strength;
         }
 
-        public List<Move> getmoveList()
+        public List<Move> getMoveList()
         {
             return moveList;
         }

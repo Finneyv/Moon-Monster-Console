@@ -8,7 +8,8 @@ namespace MoonMonsterConsole
 {
     class Builder
     {
-
+        List<Move> moveList = new List<Move>();
+        List<Monster> monsterDataBase = new List<Monster>();
 
         public Builder() { }
 
@@ -165,6 +166,129 @@ namespace MoonMonsterConsole
 
             Monster tempMonster = new Monster(name, iD, health, stamina, level, attackSpeed, agility, attackStrength, attackSize, tempMoves,type);
             return tempMonster;
+        }
+        public Roster buildRosterFromConsole(List<Monster> monsterDataBase)
+        {
+
+            List<Monster> monsterList = new List<Monster>();
+            Roster playerOneRoster = new Roster(monsterList);
+            Console.Write("How many Monsters does this roster need? (input an Integar)" + "\n");
+            String p1NumberOfMonsterS = Console.ReadLine();
+
+            int p1numMon = Convert.ToInt32(p1NumberOfMonsterS);
+            for (int i = 0; i < p1numMon; i++)
+            {
+                Console.Write("Pick the Id of your first Monster" + "\n");
+                for (int b = 0; b < monsterDataBase.Count; b++)
+                {
+                    Console.Write(" Monster: " + monsterDataBase.ElementAt(b).getName() + ", Id: " + monsterDataBase.ElementAt(b).getId() + ", Level:  " + monsterDataBase.ElementAt(b).getLevel() + ", Type: " + monsterDataBase.ElementAt(b).getType() + ", Health: " + monsterDataBase.ElementAt(b).getHealth() + "\n");
+                }
+                string monsterOrderString = Console.ReadLine();
+                int monsterOrder = Convert.ToInt32(monsterOrderString);
+                monsterOrder = monsterOrder - 1;
+
+                playerOneRoster.addMonster(monsterDataBase.ElementAt(monsterOrder));
+            }
+            for (int i = 0; i < playerOneRoster.count(); i++)
+            {
+                Console.Write("Player" + "\n");
+                //Monster at:" + +i + " is called = " + playerOneRoster.returnMonsterAt(i).getName() + "\n");
+
+                for (int b = 0; b < playerOneRoster.returnMonsterAt(i).getMoveList().Count; b++)
+                {
+                    Console.Write(playerOneRoster.returnMonsterAt(i).getName() + " move number " + b + " is named " + playerOneRoster.returnMonsterAt(i).getMoveList().ElementAt(b).getName() + "\n");
+                }
+            }
+            Console.ReadLine();
+            return playerOneRoster;
+        }
+
+        public void buildMonsters()
+        {
+            /*
+          Dragon Shep
+          id=1
+          type=fire
+          health=815
+          size=80
+          strength=80
+          speed=85
+          agility=50
+          fire=85
+          ice=0
+          plant=0
+          rock=0
+          lighting=0
+          stamina=100
+          level=56
+
+          */
+
+            Builder monsterBuilder = new Builder();
+            Monster tempMonster = monsterBuilder.buildMonsterFromConsole(moveList);
+
+            Monster dragonShep = new Monster("Dragon Sheppard", 1, 815, 400, 11, 85, 50, 90, 80, moveList, "lava");
+            //List<Move> moveLister = dragonShep.getMoveList();
+            //Move firstmove = moveLister.ElementAt(0);
+
+            Monster triceritops = new Monster("Triceritops", 2, 800, 400, 13, 70, 50, 90, 80, moveList, "plant");
+            Monster prettyMermaid = new Monster("Pretty Mermaid", 3, 875, 400, 13, 90, 90, 50, 40, moveList, "water");
+            Monster snowDeamon = new Monster("Snow Deamon", 4, 850, 70, 13, 80, 65, 80, 70, moveList, "ice");
+            Monster thunderCloud = new Monster("Thunder Cloud", 5, 900, 400, 14, 90, 90, 0, 30, moveList, "light");
+
+
+            monsterDataBase.Add(dragonShep);
+            monsterDataBase.Add(triceritops);
+            monsterDataBase.Add(prettyMermaid);
+            monsterDataBase.Add(snowDeamon);
+            monsterDataBase.Add(thunderCloud);
+            monsterDataBase.Add(tempMonster);
+            //   List<Move> moveListerT = dragonShep.getMoveList();
+            // Move secondMove = moveListerT.ElementAt(0);
+
+            /*
+            Console.Write("triceritpos health= " + triceritops.getHealth() + "\n");
+            Console.Write("max damage for bite is " + secondMove.getMaxDamage() + "\n");
+            Console.Write("dragon shep health= " +dragonShep.getHealth() + "\n");
+            Console.Write("max damage for bite is " + firstmove.getMaxDamage() + "\n");
+            Console.ReadLine();
+            */
+        }
+
+        public List<Move> buildmoves()
+        {
+            /*magic bite 
+            max damage = 700
+            max defense = 200
+            size = 35
+            strength = 40
+            speed = 25
+            type = normal
+            dsize = 60
+            dstrength = 25
+            dspeed = 15
+            fire = 0;
+            ice = 0
+            plant = 0
+            water = 0
+            rock = 0
+            lightning = 0
+            moveid=1
+            stamina=45
+               */
+            // Builder moveBuilder = new Builder();
+            //  Move tempMove = moveBuilder.buildMoveFromConsole();
+            //moveList.Add(tempMove);
+            Move bite = new Move("bite", 1, 5, "normal", 700, 200, 35, 25, 60, 15, 40, 25, 0, 0, 0, 0, 0, 0);
+            Move fireBreath = new Move("fire Breath", 2, 0, "lava", 950, 450, 15, 50, 50, 20, 50, 30, 85, 0, 0, 0, 0, 0);
+            Move photoBeam = new Move("photoBeam", 3, 6, "plant", 750, 200, 35, 40, 60, 25, 40, 25, 0, 0, 85, 0, 0, 0);
+            moveList.Add(bite);
+            moveList.Add(fireBreath);
+            moveList.Add(photoBeam);
+
+            return moveList;
+
+
         }
 
     }

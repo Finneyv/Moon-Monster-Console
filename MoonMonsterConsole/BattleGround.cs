@@ -8,6 +8,7 @@ namespace MoonMonsterConsole
 {
     class BattleGround
     {
+        Builder Build = new Builder();
         Roster playerOneRoster;
         Roster playerTwoRoster;
         List<Monster> monsterDataBase;
@@ -31,7 +32,7 @@ namespace MoonMonsterConsole
             moveStrength = moveStrength / 100;
 
             int creatureSpeed = attackMonster.getSpeed();
-            int creatureStrength = attackMonster.getstrength();
+            int creatureStrength = attackMonster.getStrength();
             int creatureSize = attackMonster.getSize();
 
             moveSize = moveSize * creatureSize;
@@ -48,7 +49,7 @@ namespace MoonMonsterConsole
             pAV = pAV * effectivnessDecimal;
            // Console.Write("max damage after applied (defense still to be calculated) " + pAV + "\n");
 
-            float levelMod = attackMonster.getlevel();
+            float levelMod = attackMonster.getLevel();
             levelMod = levelMod / 100;
            // Console.Write(" level mod attacker " + levelMod + "\n");
             pAV = pAV * levelMod;
@@ -70,7 +71,7 @@ namespace MoonMonsterConsole
             moveStrength = moveStrength / 100;
 
             int creatureSpeed = attackMonster.getSpeed();
-            int creatureStrength = attackMonster.getstrength();
+            int creatureStrength = attackMonster.getStrength();
             int creatureSize = attackMonster.getSize();
 
             moveSize = moveSize * creatureSize;
@@ -86,7 +87,7 @@ namespace MoonMonsterConsole
             pAV = pAV * effectivnessDecimal;
             //Console.Write("max damage after applied (defense still to be calculated) " + pAV + "\n");
 
-            float levelMod = attackMonster.getlevel();
+            float levelMod = attackMonster.getLevel();
             levelMod = levelMod / 100;
         //    Console.Write(" level mod attacker " + levelMod + "\n");
             pAV = pAV * levelMod;
@@ -120,14 +121,14 @@ namespace MoonMonsterConsole
 
             int defenderSpeed = defenseMonster.getSpeed();
             int defenderSize = defenseMonster.getSize();
-            int defenderStrengh = defenseMonster.getstrength();
+            int defenderStrengh = defenseMonster.getStrength();
             dSpeed = dSpeed * defenderSpeed;
             dSize = dSize * defenderSize;
             dstrength = dstrength * defenderStrengh;
             float total = dSpeed + dSize + dstrength;
             total = total / 100;
        
-            float levelMod = defenseMonster.getlevel();
+            float levelMod = defenseMonster.getLevel();
             levelMod = levelMod / 100;
     
             total = total * levelMod;
@@ -480,7 +481,7 @@ namespace MoonMonsterConsole
 
             List<Monster> attackDefenderList = new List<Monster>();
             int staminaRequired = attackMove.getStamina();
-            int staminaPossessed = attackMonster.getstamina();
+            int staminaPossessed = attackMonster.getStamina();
             if (staminaRequired > staminaPossessed)
             {
                 attackDefenderList.Add(attackMonster);
@@ -495,8 +496,8 @@ namespace MoonMonsterConsole
             float netDefense;
 
                 Console.Write("Move Name: " + attackMove.getName() +", Stamina required: "+attackMove.getStamina()+"\n");
-                Console.Write("Attacker: " + attackMonster.getName() + ", Level: " + attackMonster.getlevel()+" Health: "+attackMonster.gethealth()+", Stamina: " + attackMonster.getstamina() + "\n");
-                Console.Write("Defender: " + defendingMonster.getName() + ", Level: " + defendingMonster.getlevel()+" Health: "+defendingMonster.gethealth() + ", Stamina: "+defendingMonster.getstamina() +"\n");
+                Console.Write("Attacker: " + attackMonster.getName() + ", Level: " + attackMonster.getLevel()+" Health: "+attackMonster.getHealth()+", Stamina: " + attackMonster.getStamina() + "\n");
+                Console.Write("Defender: " + defendingMonster.getName() + ", Level: " + defendingMonster.getLevel()+" Health: "+defendingMonster.getHealth() + ", Stamina: "+defendingMonster.getStamina() +"\n");
 
             netAttack = principalAttackValue(attackMonster, attackMove);
             netDefense = principalDefenseValue(defendingMonster, attackMove);
@@ -519,7 +520,7 @@ namespace MoonMonsterConsole
             //  number between the range of 0:X where x = 1 - (.2 / 3 + E), 
            
 
-            int level=attackMonster.getlevel();
+            int level=attackMonster.getLevel();
             float tempLevel = (float)level;
             tempLevel = tempLevel / 100;
             damage = damage * tempLevel;
@@ -561,49 +562,14 @@ namespace MoonMonsterConsole
                 }
             }
         }
-
-        public Roster buildRosterFromConsole()
-        {
-
-            List<Monster> monsterList = new List<Monster>();
-            Roster playerOneRoster = new Roster(monsterList);
-            Console.Write("How many Monsters does this roster need? (input an Integar)" + "\n");
-            String p1NumberOfMonsterS = Console.ReadLine();
   
-            int p1numMon = Convert.ToInt32(p1NumberOfMonsterS);
-            for (int i = 0; i < p1numMon; i++)
-            {
-                Console.Write("Pick the Id of your first Monster" + "\n");
-                for (int b = 0; b < monsterDataBase.Count; b++)
-                {
-                    Console.Write(" Monster: " + monsterDataBase.ElementAt(b).getName() + ", Id: " + monsterDataBase.ElementAt(b).getId() + ", Level:  " + monsterDataBase.ElementAt(b).getlevel() + ", Type: " + monsterDataBase.ElementAt(b).getType()+", Health: "+ monsterDataBase.ElementAt(b).gethealth() + "\n");
-                }
-                string monsterOrderString = Console.ReadLine();
-                int monsterOrder = Convert.ToInt32(monsterOrderString);
-                monsterOrder = monsterOrder -1;
-               
-                playerOneRoster.addMonster(monsterDataBase.ElementAt(monsterOrder));
-            }
-            for (int i = 0; i < playerOneRoster.count(); i++)
-            {
-                Console.Write("Player" + "\n");
-                    //Monster at:" + +i + " is called = " + playerOneRoster.returnMonsterAt(i).getName() + "\n");
-
-                for (int b = 0; b < playerOneRoster.returnMonsterAt(i).getmoveList().Count; b++)
-                {
-                    Console.Write(playerOneRoster.returnMonsterAt(i).getName() + " move number " + b + " is named " + playerOneRoster.returnMonsterAt(i).getmoveList().ElementAt(b).getName() + "\n");
-                }
-            }
-            Console.ReadLine();
-            return playerOneRoster;
-        }
 
         public void battleManager(Roster feedPlayerOne, Roster feedPlayerTwo, List<Monster> monsterDataBase)
         {
             Console.Write("Player One" + "\n");
-            playerOneRoster = buildRosterFromConsole();
+            playerOneRoster = Build.buildRosterFromConsole(monsterDataBase);
             Console.Write("Player Two" + "\n");
-            playerTwoRoster = buildRosterFromConsole();
+            playerTwoRoster = Build.buildRosterFromConsole(monsterDataBase);
 
          
             iterator(playerOneRoster, playerTwoRoster);
@@ -617,10 +583,10 @@ namespace MoonMonsterConsole
         public void fightTwo(Monster attackMonster, Monster defendingMonster)
         {
             Console.Write("\n");
-            Console.Write("Attacker: " + attackMonster.getName() + ", Level: " + attackMonster.getlevel() + " Health: " + attackMonster.gethealth() + ", Stamina: " + attackMonster.getstamina()+", Type: "+attackMonster.getType() + "\n");
-            Console.Write("Defender: " + defendingMonster.getName() + ", Level: " + defendingMonster.getlevel() + " Health: " + defendingMonster.gethealth() + ", Stamina: " + defendingMonster.getstamina()+ ", Type: "+defendingMonster.getType() + "\n");
+            Console.Write("Attacker: " + attackMonster.getName() + ", Level: " + attackMonster.getLevel() + " Health: " + attackMonster.getHealth() + ", Stamina: " + attackMonster.getStamina()+", Type: "+attackMonster.getType() + "\n");
+            Console.Write("Defender: " + defendingMonster.getName() + ", Level: " + defendingMonster.getLevel() + " Health: " + defendingMonster.getHealth() + ", Stamina: " + defendingMonster.getStamina()+ ", Type: "+defendingMonster.getType() + "\n");
 
-            Move toBecastMove = getMoveFromConsole(attackMonster.getmoveList());
+            Move toBecastMove = getMoveFromConsole(attackMonster.getMoveList());
             castMove(attackMonster, toBecastMove, defendingMonster);
             if (defendingMonster.currentlyLiving() == true)
             {
@@ -637,12 +603,12 @@ namespace MoonMonsterConsole
         }
         public void printHealth(Monster attacker, Monster defender)
         {
-            Console.Write(attacker.getName() + " health = " + attacker.gethealth() + "\n");
-            Console.Write(defender.getName() + " health = " + defender.gethealth() + "\n");
+            Console.Write(attacker.getName() + " health = " + attacker.getHealth() + "\n");
+            Console.Write(defender.getName() + " health = " + defender.getHealth() + "\n");
             Console.Write("\n");
 
         }
-    }
+    } 
 }
 
     

@@ -28,12 +28,12 @@ namespace MoonMonsterConsole
         public Monster returnMonsterAt(int index)
         {
             Monster toBeReturned = monsterRoster.ElementAt(index);
-            //monsterRoster.ElementAt(index).getmoveList().ElementAt(0).getMaxDamage();
+            //monsterRoster.ElementAt(index).getMoveList().ElementAt(0).getMaxDamage();
             return toBeReturned;
         }
         public int testMaxdamageSpecailCase(int index)
         {
-            int damage=monsterRoster.ElementAt(index).getmoveList().ElementAt(0).getMaxDamage();
+            int damage=monsterRoster.ElementAt(index).getMoveList().ElementAt(0).getMaxDamage();
             return damage;
         }
         public void addMonster(Monster newMonster)

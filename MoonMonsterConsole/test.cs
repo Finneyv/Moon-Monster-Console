@@ -16,6 +16,7 @@ namespace MoonMonsterConsole
         List<Move> moveList = new List<Move>();
         List<Monster> monsterDataBase = new List<Monster>();
         BattleGround firstFight;
+        Builder Build = new Builder();
         public void buildmoves()
         {
             /*magic bite 
@@ -52,6 +53,11 @@ namespace MoonMonsterConsole
 
     }
 
+        public test()
+        {
+
+        }
+
         public void buildMonsters()
         {
             /*
@@ -73,11 +79,11 @@ namespace MoonMonsterConsole
 
           */
 
-            Builder monsterBuilder = new Builder();
-            Monster tempMonster=monsterBuilder.buildMonsterFromConsole(moveList);
+          //  Builder monsterBuilder = new Builder();
+           // Monster tempMonster=monsterBuilder.buildMonsterFromConsole(moveList);
 
             dragonShep = new Monster("Dragon Sheppard",1, 815, 400, 11, 85, 50,90,80, moveList,"lava");
-            //List<Move> moveLister = dragonShep.getmoveList();
+            //List<Move> moveLister = dragonShep.getMoveList();
             //Move firstmove = moveLister.ElementAt(0);
           
             triceritops = new Monster("Triceritops", 2, 800, 400, 13, 70, 50, 90, 80, moveList, "plant");
@@ -91,17 +97,11 @@ namespace MoonMonsterConsole
             monsterDataBase.Add(prettyMermaid);
             monsterDataBase.Add(snowDeamon);
             monsterDataBase.Add(thunderCloud);
-            monsterDataBase.Add(tempMonster);
-         //   List<Move> moveListerT = dragonShep.getmoveList();
-           // Move secondMove = moveListerT.ElementAt(0);
-            
-            /*
-            Console.Write("triceritpos health= " + triceritops.gethealth() + "\n");
-            Console.Write("max damage for bite is " + secondMove.getMaxDamage() + "\n");
-            Console.Write("dragon shep health= " +dragonShep.gethealth() + "\n");
-            Console.Write("max damage for bite is " + firstmove.getMaxDamage() + "\n");
-            Console.ReadLine();
-            */
+
+            //  Builder monsterBuilder = new Builder();
+            // Monster tempMonster=monsterBuilder.buildMonsterFromConsole(moveList);
+            // monsterDataBase.Add(tempMonster);
+      
         }
      
         public void printMoveList()
@@ -194,19 +194,140 @@ namespace MoonMonsterConsole
             buildMonsters();
             buildRoster();
             buildBattleGround();
-           // printMoveList();
-            
+            // printMoveList();
+
 
             //simulatedMain();
             // buildRosterFromConsole(); //this wil build the rosters from console that will be fed to battle ground
-              testBattleManager(); //this is where we will input two rosters and then this will manage the roster interaction
+            //    testBattleManager(); //this is where we will input two rosters and then this will manage the roster interaction
 
-           // testFirstFight(); //this runs a hard coded battle between Dragon and Triceritops
+            // testFirstFight(); //this runs a hard coded battle between Dragon and Triceritops
             //    Builder firstBuilider = new Builder(); //testing builderClass
             //  firstBuilider.buildMoveFromConsole();
+            startUpConsole();
+
             Console.ReadLine();
 
         }
+        static void startUpConsole()
+        {
+
+            Console.Write("Welcome to Moon Monster, the Conquest of the Future" + "\n");
+            // Console.Write("Today will be a two player gamee" + "\n");
+            gameLoop();
+
+
+        }
+        public List<Monster> buildMonstersList()
+        {
+            /*
+          Dragon Shep
+          id=1
+          type=fire
+          health=815
+          size=80
+          strength=80
+          speed=85
+          agility=50
+          fire=85
+          ice=0
+          plant=0
+          rock=0
+          lighting=0
+          stamina=100
+          level=56
+
+          */
+
+            //  Builder monsterBuilder = new Builder();
+            // Monster tempMonster=monsterBuilder.buildMonsterFromConsole(moveList);
+
+            dragonShep = new Monster("Dragon Sheppard", 1, 815, 400, 11, 85, 50, 90, 80, moveList, "lava");
+            //List<Move> moveLister = dragonShep.getMoveList();
+            //Move firstmove = moveLister.ElementAt(0);
+
+            triceritops = new Monster("Triceritops", 2, 800, 400, 13, 70, 50, 90, 80, moveList, "plant");
+            Monster prettyMermaid = new Monster("Pretty Mermaid", 3, 875, 400, 13, 90, 90, 50, 40, moveList, "water");
+            Monster snowDeamon = new Monster("Snow Deamon", 4, 850, 70, 13, 80, 65, 80, 70, moveList, "ice");
+            Monster thunderCloud = new Monster("Thunder Cloud", 5, 900, 400, 14, 90, 90, 0, 30, moveList, "light");
+
+
+            monsterDataBase.Add(dragonShep);
+            monsterDataBase.Add(triceritops);
+            monsterDataBase.Add(prettyMermaid);
+            monsterDataBase.Add(snowDeamon);
+            monsterDataBase.Add(thunderCloud);
+            return monsterDataBase;
+            //  Builder monsterBuilder = new Builder();
+            // Monster tempMonster=monsterBuilder.buildMonsterFromConsole(moveList);
+            // monsterDataBase.Add(tempMonster);
+
+        }
+
+
+
+        static void gameLoop()
+        {
+            Builder buildRoster = new Builder();
+            test secondTest = new test();
+            secondTest.buildmoves();
+            secondTest.buildMonsters();
+           Console.Write("database count at start: " + secondTest.monsterDataBase.Count() + "\n");
+            Console.Write("What would you like to do today? Enter 1 to play, or 2 to develop " + "\n");
+            string tempString = Console.ReadLine();
+            int tempInt = Convert.ToInt32(tempString);
+            if (tempInt == 1)
+            {
+                Console.Write("Player One please select your roster;"+"\n");
+               
+                Roster playerOne = buildRoster.buildRosterFromConsole(secondTest.getDataBase());
+                Console.Write("Player Two please selecet your roster:"+"\n");
+                Roster playerTwo= buildRoster.buildRosterFromConsole(secondTest.getDataBase());
+                BattleGround firstLoop = new BattleGround(playerOne,playerTwo,secondTest.getDataBase());
+                firstLoop.iterator(playerOne, playerTwo);
+
+
+            }
+            if (tempInt == 2)
+            {
+                Console.Write("Welcome to Developer Mode: " + "\n");
+                Console.Write("Please Select a number from the following list: " + "\n");
+                Console.Write("1= View Monster DataBase: " + "\n");
+                Console.Write("2= Create Nwe Monster" + "\n");
+                string tempStringTwo=Console.ReadLine();
+                int tempIntTwo = Convert.ToInt32(tempStringTwo);
+                if (tempIntTwo == 1)
+                {
+                    for(int i = 0; i < secondTest.getDataBase().Count(); i++)
+                    {
+                        Console.Write(" Monster: " + secondTest.getDataBase().ElementAt(i).getName() + ", Id: " + secondTest.getDataBase().ElementAt(i).getId() + ", Level:  " + secondTest.getDataBase().ElementAt(i).getLevel() + ", Type: " + secondTest.getDataBase().ElementAt(i).getType() + ", Health: " + secondTest.getDataBase().ElementAt(i).getHealth() + "\n");
+                        
+                        
+                    }
+                    Console.Write("Press enter to continue"+"\n");
+                    Console.ReadLine();
+                    gameLoop();
+                }
+
+            }
+            if (tempInt == 2)
+            {
+                 Monster newMonster= buildRoster.buildMonsterFromConsole(secondTest.moveList);
+                 secondTest.monsterDataBase.Add(newMonster);
+                Console.Write("Press enter to continue");
+                Console.ReadLine();
+                gameLoop();
+
+            }
+
+
+            else
+            {
+
+            }
+
+        }
+
 
         public Roster buildRosterFromConsole()
         {
@@ -233,9 +354,9 @@ namespace MoonMonsterConsole
             for (int i = 0; i < playerOneRoster.count(); i++)
             {
                 Console.Write("Player 1 Monster at:" + +i + " is called = " + playerOneRoster.returnMonsterAt(i).getName() + "\n");
-                for (int b = 0; b < playerOneRoster.returnMonsterAt(i).getmoveList().Count; b++)
+                for (int b = 0; b < playerOneRoster.returnMonsterAt(i).getMoveList().Count; b++)
                 {
-                    Console.Write(playerOneRoster.returnMonsterAt(i).getName() + " move number " + b + " is named " + playerOneRoster.returnMonsterAt(i).getmoveList().ElementAt(b).getName() + "\n");
+                    Console.Write(playerOneRoster.returnMonsterAt(i).getName() + " move number " + b + " is named " + playerOneRoster.returnMonsterAt(i).getMoveList().ElementAt(b).getName() + "\n");
                 }
             }
 
@@ -252,6 +373,10 @@ namespace MoonMonsterConsole
             Console.ReadLine();
         }
 
+        public List<Monster> getDataBase()
+        {
+            return monsterDataBase;
+        }
         
     }
 

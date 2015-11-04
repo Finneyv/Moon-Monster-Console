@@ -27,8 +27,9 @@ namespace MoonMonsterConsole
         int dstrength;
         int astrength;
         string name;
+        int levelReq;
         //initializing Move as an object f stands for first
-        public Move(string tname,int fmoveId, int fstaminaReq, string ftype, int fmaxDamage, int fmaxDefense, int fasize, int faspeed, int fdsize, int fdspeed,int taStrength, int tdStrength, int ffire, int fice, int fplant, int fwater, int frock, int flightning)
+        public Move(string tname,int fmoveId, int fstaminaReq, string ftype, int fmaxDamage, int fmaxDefense, int fasize, int faspeed, int fdsize, int fdspeed,int taStrength, int tdStrength, int ffire, int fice, int fplant, int fwater, int frock, int flightning, int levReq)
         {
             dstrength = tdStrength;
             astrength = taStrength;
@@ -48,6 +49,7 @@ namespace MoonMonsterConsole
             water = fwater;
             rock = frock;
             lightning = flightning;
+            levelReq = levReq;
         }
         public int getFire()
         {

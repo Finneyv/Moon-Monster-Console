@@ -103,8 +103,13 @@ namespace MoonMonsterConsole
             Console.Write("Input lightening Mastery: " + "\n");
             tempString = Console.ReadLine();
             light = Convert.ToInt32(tempString);
+            Console.Write("Input Level Required to Equip Move");
+            tempString = Console.ReadLine();
+            int levelReq = Convert.ToInt32(tempString);
+
+
             Move tempMove = new Move(moveName, moveId, staminaReq, attackType, maxDamage, maxDefense, attackSize, attackSpeed, defenseSize,
-                defenseSpeed, attackStrength, defenseStrength, fire, ice, plant, water, rock, light);
+                defenseSpeed, attackStrength, defenseStrength, fire, ice, plant, water, rock, light,levelReq);
             return tempMove;
         }
 

@@ -37,6 +37,9 @@ namespace MoonMonsterConsole
             moveid=1
             stamina=45
                */
+           // Builder moveBuilder = new Builder();
+          //  Move tempMove = moveBuilder.buildMoveFromConsole();
+            //moveList.Add(tempMove);
             Move bite = new Move("bite",1, 5, "normal", 700, 200, 35, 25, 60, 15, 40,25,0, 0, 0,0,0,0);
             Move fireBreath = new Move("fire Breath",2, 0, "lava", 950, 450, 15, 50, 50, 20, 50, 30, 85, 0, 0, 0, 0, 0);
             Move photoBeam = new Move("photoBeam", 3, 6, "plant", 750, 200, 35, 40, 60, 25, 40, 25, 0, 0, 85, 0, 0, 0);
@@ -44,13 +47,11 @@ namespace MoonMonsterConsole
             moveList.Add(fireBreath);
             moveList.Add(photoBeam);
            
+
         
 
     }
-        public void buildMonsterFromConsole()
-        {
 
-        }
         public void buildMonsters()
         {
             /*
@@ -72,6 +73,9 @@ namespace MoonMonsterConsole
 
           */
 
+            Builder monsterBuilder = new Builder();
+            Monster tempMonster=monsterBuilder.buildMonsterFromConsole(moveList);
+
             dragonShep = new Monster("Dragon Sheppard",1, 815, 400, 11, 85, 50,90,80, moveList,"lava");
             //List<Move> moveLister = dragonShep.getmoveList();
             //Move firstmove = moveLister.ElementAt(0);
@@ -87,6 +91,7 @@ namespace MoonMonsterConsole
             monsterDataBase.Add(prettyMermaid);
             monsterDataBase.Add(snowDeamon);
             monsterDataBase.Add(thunderCloud);
+            monsterDataBase.Add(tempMonster);
          //   List<Move> moveListerT = dragonShep.getmoveList();
            // Move secondMove = moveListerT.ElementAt(0);
             
@@ -99,6 +104,13 @@ namespace MoonMonsterConsole
             */
         }
      
+        public void printMoveList()
+        {
+            for (int b = 0; b < moveList.Count; b++)
+            {
+                Console.Write("Name: " + moveList.ElementAt(b).getName() + ", Id: " + moveList.ElementAt(b).getId() + ", Type: " + moveList.ElementAt(b).getType() + ", M Damage: " + moveList.ElementAt(b).getMaxDamage() + ", M Defense: " + moveList.ElementAt(b).getMaxDefense() + "\n");
+            }
+        }
         public void buildRoster()
         {
             List<Monster> player1temp = new List<Monster>();
@@ -180,15 +192,20 @@ namespace MoonMonsterConsole
         {
             buildmoves();
             buildMonsters();
-           // buildRoster();
+            buildRoster();
             buildBattleGround();
-           
-            Console.ReadLine();
+           // printMoveList();
+            
+
             //simulatedMain();
             // buildRosterFromConsole(); //this wil build the rosters from console that will be fed to battle ground
-            testBattleManager(); //this is where we will input two rosters and then this will manage the roster interaction
+              testBattleManager(); //this is where we will input two rosters and then this will manage the roster interaction
 
-            //testFirstFight(); //this runs a hard coded battle between Dragon and Triceritops
+           // testFirstFight(); //this runs a hard coded battle between Dragon and Triceritops
+            //    Builder firstBuilider = new Builder(); //testing builderClass
+            //  firstBuilider.buildMoveFromConsole();
+            Console.ReadLine();
+
         }
 
         public Roster buildRosterFromConsole()

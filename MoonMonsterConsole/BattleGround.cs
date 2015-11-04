@@ -22,7 +22,7 @@ namespace MoonMonsterConsole
             float pAV = attackMove.getMaxDamage();
 
 
-            float moveSize = attackMove.getSize();
+            float moveSize = attackMove.getSizeAttacker();
             float moveSpeed = attackMove.getSpeed();
             float moveStrength = attackMove.getStrength();
 
@@ -61,7 +61,7 @@ namespace MoonMonsterConsole
             float pAV = attackMove.getMaxDamage();
 
 
-            float moveSize = attackMove.getSize();
+            float moveSize = attackMove.getSizeAttacker();
             float moveSpeed = attackMove.getSpeed();
             float moveStrength = attackMove.getStrength();
 

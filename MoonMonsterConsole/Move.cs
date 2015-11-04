@@ -81,7 +81,7 @@ namespace MoonMonsterConsole
         {
             return this.astrength;
         }
-        public int getSize()
+        public int getSizeAttacker()
         {
             return this.asize;
         }

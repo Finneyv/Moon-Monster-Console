@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BattleGround.cs" />
+    <Compile Include="Builder.cs" />
     <Compile Include="monster.cs" />
     <Compile Include="Move.cs" />
     <Compile Include="Program.cs" />

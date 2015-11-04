@@ -9,15 +9,16 @@ namespace MoonMonsterConsole
     class Roster
     {
         List<Monster> monsterRoster = new List<Monster>();
-
+        String name;
         public int getSize()
         {
             return monsterRoster.Count();
         }
 
-        public Roster(List<Monster> fmonsterRoster)
+        public Roster(List<Monster> fmonsterRoster,string nameTemp)
         {
             monsterRoster = fmonsterRoster;
+            name = nameTemp;
         }
         public int count()
         {

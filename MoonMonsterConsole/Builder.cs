@@ -176,7 +176,7 @@ namespace MoonMonsterConsole
         {
 
             List<Monster> monsterList = new List<Monster>();
-            Roster playerOneRoster = new Roster(monsterList);
+            Roster playerOneRoster = new Roster(monsterList,"one");
             Console.Write("How many Monsters does this roster need? (input an Integar)" + "\n");
             String p1NumberOfMonsterS = Console.ReadLine();
 

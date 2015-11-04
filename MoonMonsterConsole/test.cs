@@ -42,9 +42,9 @@ namespace MoonMonsterConsole
            // Builder moveBuilder = new Builder();
           //  Move tempMove = moveBuilder.buildMoveFromConsole();
             //moveList.Add(tempMove);
-            Move bite = new Move("bite",1, 5, "normal", 700, 200, 35, 25, 60, 15, 40,25,0, 0, 0,0,0,0,1);
-            Move fireBreath = new Move("fire Breath",2, 0, "lava", 950, 450, 15, 50, 50, 20, 50, 30, 85, 0, 0, 0, 0, 0,1);
-            Move photoBeam = new Move("photoBeam", 3, 6, "plant", 750, 200, 35, 40, 60, 25, 40, 25, 0, 0, 85, 0, 0, 0,1);
+            Move bite = new Move("bite",1, 5, "normal", 2000, 200, 35, 25, 60, 15, 40,25,0, 0, 0,0,0,0,1);
+            Move fireBreath = new Move("fire Breath",2, 0, "lava", 2150, 450, 15, 50, 50, 20, 50, 30, 85, 0, 0, 0, 0, 0,1);
+            Move photoBeam = new Move("photoBeam", 3, 6, "plant", 1750, 200, 35, 40, 60, 25, 40, 25, 0, 0, 85, 0, 0, 0,1);
             moveList.Add(bite);
             moveList.Add(fireBreath);
             moveList.Add(photoBeam);
@@ -116,7 +116,7 @@ namespace MoonMonsterConsole
         {
             List<Monster> player1temp = new List<Monster>();
             player1temp.Add(monsterDataBase.ElementAt(0));
-            playerOne = new Roster(player1temp);
+            playerOne = new Roster(player1temp,"PLayer One");
 
            
             playerOne.addMonster(dragonShep);
@@ -127,7 +127,7 @@ namespace MoonMonsterConsole
 
             List<Monster> player2Temp = new List<Monster>();
             player2Temp.Add(monsterDataBase.ElementAt(1));
-            playerTwo = new Roster(player2Temp);
+            playerTwo = new Roster(player2Temp, "Player Two");
             playerTwo.addMonster(triceritops);
             playerTwo.addMonster(triceritops);
             playerTwo.addMonster(triceritops);
@@ -274,7 +274,7 @@ namespace MoonMonsterConsole
             secondTest.buildmoves();
             secondTest.buildMonsters();
            Console.Write("database count at start: " + secondTest.monsterDataBase.Count() + "\n");
-            Console.Write("What would you like to do today? Enter 1 to play, or 2 to develop " + "\n");
+            Console.Write("What would you like to do today? Enter 1 to play, 2 to develop or 3 to exit " + "\n");
             string tempString = Console.ReadLine();
             int tempInt = Convert.ToInt32(tempString);
             if (tempInt == 1)
@@ -286,7 +286,7 @@ namespace MoonMonsterConsole
                 Roster playerTwo= buildRoster.buildRosterFromConsole(secondTest.getDataBase());
                 BattleGround firstLoop = new BattleGround(playerOne,playerTwo,secondTest.getDataBase());
                 firstLoop.iterator(playerOne, playerTwo);
-
+                gameLoop();
 
             }
             if (tempInt == 2)
@@ -296,6 +296,7 @@ namespace MoonMonsterConsole
                 Console.Write("1: View Monster DataBase: " + "\n");
                 Console.Write("2: Create Nwe Monster" + "\n");
                 Console.Write("3: Create new Move" + "\n");
+                Console.Write("4: Create new Roster");
                 string tempStringTwo=Console.ReadLine();
                 int tempIntTwo = Convert.ToInt32(tempStringTwo);
                 if (tempIntTwo == 1)
@@ -332,11 +333,24 @@ namespace MoonMonsterConsole
                     gameLoop();
 
                 }
+                if (tempIntTwo == 4)
+                {
+
+                    Roster newRoster = buildRoster.buildRosterFromConsole(secondTest.getDataBase());
+                    //roster has not been stored anywhere
+
+                    Console.Write("Press enter to continue");
+                    Console.ReadLine();
+                    gameLoop();
+
+                }
 
             }
+            if (tempInt == 3)
+            {
+                Console.Write(" Thank for playing ");
+            }
             
-
-
             else
             {
 
@@ -349,7 +363,7 @@ namespace MoonMonsterConsole
         {
 
             List<Monster> monsterList = new List<Monster>();
-            Roster playerOneRoster = new Roster(monsterList);
+            Roster playerOneRoster = new Roster(monsterList,"Player One");
             Console.Write("How many Monsters does this roster need? (input an Integar)" + "\n");
             String p1NumberOfMonsterS = Console.ReadLine();
 

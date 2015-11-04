@@ -53,12 +53,10 @@ namespace MoonMonsterConsole
         
 
     }
-
         public test()
         {
             this.monsterDataBase = new List<Monster>();
         }
-
         public void buildMonsters()
         {
             /*
@@ -103,8 +101,7 @@ namespace MoonMonsterConsole
             // Monster tempMonster=monsterBuilder.buildMonsterFromConsole(moveList);
             // monsterDataBase.Add(tempMonster);
       
-        }
-     
+        }    
         public void printMoveList()
         {
             for (int b = 0; b < moveList.Count; b++)
@@ -264,9 +261,6 @@ namespace MoonMonsterConsole
             // monsterDataBase.Add(tempMonster);
 
         }
-
-
-
         static void gameLoop()
         {
             Builder buildRoster = new Builder();
@@ -357,8 +351,6 @@ namespace MoonMonsterConsole
             }
 
         }
-
-
         public Roster buildRosterFromConsole()
         {
 
@@ -402,7 +394,6 @@ namespace MoonMonsterConsole
             firstFight.battleManager(playerOneRoster, PlayerTwoRoster, monsterDataBase);
             Console.ReadLine();
         }
-
         public List<Monster> getDataBase()
         {
             return monsterDataBase;

@@ -17,6 +17,7 @@ namespace MoonMonsterConsole
         List<Monster> monsterDataBase = new List<Monster>();
         BattleGround firstFight;
         Builder Build = new Builder();
+       
         public void buildmoves()
         {
             /*magic bite 
@@ -55,7 +56,7 @@ namespace MoonMonsterConsole
 
         public test()
         {
-
+            this.monsterDataBase = new List<Monster>();
         }
 
         public void buildMonsters()
@@ -292,8 +293,9 @@ namespace MoonMonsterConsole
             {
                 Console.Write("Welcome to Developer Mode: " + "\n");
                 Console.Write("Please Select a number from the following list: " + "\n");
-                Console.Write("1= View Monster DataBase: " + "\n");
-                Console.Write("2= Create Nwe Monster" + "\n");
+                Console.Write("1: View Monster DataBase: " + "\n");
+                Console.Write("2: Create Nwe Monster" + "\n");
+                Console.Write("3: Create new Move" + "\n");
                 string tempStringTwo=Console.ReadLine();
                 int tempIntTwo = Convert.ToInt32(tempStringTwo);
                 if (tempIntTwo == 1)
@@ -308,17 +310,31 @@ namespace MoonMonsterConsole
                     Console.ReadLine();
                     gameLoop();
                 }
+                if (tempIntTwo == 2)
+                {
+                    Monster newMonster = buildRoster.buildMonsterFromConsole(secondTest.moveList);
+                    secondTest.monsterDataBase.Add(newMonster);
+
+                    Console.Write("Press enter to continue");
+                    Console.ReadLine();
+                    gameLoop();
+
+                }
+
+                if (tempIntTwo == 3)
+                {
+
+                    Move newMove = buildRoster.buildMoveFromConsole();
+                    secondTest.moveList.Add(newMove);
+
+                    Console.Write("Press enter to continue");
+                    Console.ReadLine();
+                    gameLoop();
+
+                }
 
             }
-            if (tempInt == 2)
-            {
-                 Monster newMonster= buildRoster.buildMonsterFromConsole(secondTest.moveList);
-                 secondTest.monsterDataBase.Add(newMonster);
-                Console.Write("Press enter to continue");
-                Console.ReadLine();
-                gameLoop();
-
-            }
+            
 
 
             else

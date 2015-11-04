@@ -284,9 +284,9 @@ namespace MoonMonsterConsole
             // Builder moveBuilder = new Builder();
             //  Move tempMove = moveBuilder.buildMoveFromConsole();
             //moveList.Add(tempMove);
-            Move bite = new Move("bite", 1, 5, "normal", 700, 200, 35, 25, 60, 15, 40, 25, 0, 0, 0, 0, 0, 0);
-            Move fireBreath = new Move("fire Breath", 2, 0, "lava", 950, 450, 15, 50, 50, 20, 50, 30, 85, 0, 0, 0, 0, 0);
-            Move photoBeam = new Move("photoBeam", 3, 6, "plant", 750, 200, 35, 40, 60, 25, 40, 25, 0, 0, 85, 0, 0, 0);
+            Move bite = new Move("bite", 1, 5, "normal", 700, 200, 35, 25, 60, 15, 40, 25, 0, 0, 0, 0, 0, 0,0);
+            Move fireBreath = new Move("fire Breath", 2, 0, "lava", 950, 450, 15, 50, 50, 20, 50, 30, 85, 0, 0, 0, 0, 0,0);
+            Move photoBeam = new Move("photoBeam", 3, 6, "plant", 750, 200, 35, 40, 60, 25, 40, 25, 0, 0, 85, 0, 0, 0,0);
             moveList.Add(bite);
             moveList.Add(fireBreath);
             moveList.Add(photoBeam);

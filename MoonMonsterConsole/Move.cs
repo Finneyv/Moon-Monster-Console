@@ -44,6 +44,6 @@ namespace MoonMonsterConsole
             rock = frock;
             lightning = flightning;
         }
-
+        
     }
 }

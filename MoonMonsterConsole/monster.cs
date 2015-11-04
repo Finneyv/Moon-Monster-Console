@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace MoonMonsterConsole
 {
-    public class monster
+    public class Monster
     {
 
         // The first variable is a test
         int firstInt = 0;
         // the first set of variables are the ones that will change
+        int size = 0;
         int id = 0;
         int health = 0;
         int stamina = 0;
@@ -22,13 +23,18 @@ namespace MoonMonsterConsole
         int strength = 0;
         Boolean isAlive = true;
         Boolean hasStamina = true;
+        string name;
+        //list of types
+        string type = "0";
+
 
         // this will be a list of moves that are available to the creature
+
         List<Move> moveList = new List<Move>();
 
 
-       // here I am attempting to intialize the monster and give it a test value, i then expect this function to assign the value and print firstInt
-        public monster(int firstid, int fhealth, int fstamina, int flevel, int fspeed, int fagility, int fstrength, List<Move> fmoveList)
+       // here I am attempting to intialize the Monster and give it a test value, i then expect this function to assign the value and print firstInt
+        public Monster(string nameT,int firstid, int fhealth, int fstamina, int flevel, int fspeed, int fagility, int fstrength,int sizet, List<Move> fmoveList,string mtype)
         {
             id = firstid;
             health = fhealth;
@@ -38,8 +44,17 @@ namespace MoonMonsterConsole
             agility = fagility;
             strength = fstrength;
             moveList = fmoveList;
+
+            size = sizet;
+            type = mtype;
+            name = nameT;
+            calculateMonster();
         }
-        public monster(int firstid, int flevel)
+        public string getName()
+        {
+            return name;
+        }
+        public Monster(int firstid, int flevel)
         {
             //this function will generate monsters based on the parameters given
             int maxhealth;
@@ -47,25 +62,55 @@ namespace MoonMonsterConsole
             level = flevel;
             //health = maxhealth;
         }
+        public void calculateMonster()  {
+            List<Move> moveListMonster = new List<Move>();
+            float tempHealth;
+            float tempLevel=(float) level;
+            tempLevel = tempLevel / 100;
 
-        public void renderDamage(int damage)
+            tempHealth = health * tempLevel;
+            health = Convert.ToInt32(tempHealth);
+             
+             
+       
+        }
+        public string getType()
         {
+            return type;
+        }
+        public void renderDamage(int damage, Monster attackMonster, Monster defendingMonster, Move attackMove)
+        {
+
             health = health - damage;
             if (health < 1)
             {
                 isAlive = false;
             }
+            if (defendingMonster.currentlyLiving() == false)
+            {
+                Console.Write(defendingMonster.getName() + " is dead" + "\n");
+            }
+          
+            useStamina(attackMove.getStamina(),attackMonster);
         }
 
-        public void useStamina(int staminaUsed)
+        public void useStamina(int staminaUsed,Monster attackingMonster)
         {
-            stamina = stamina - staminaUsed;
+            stamina = attackingMonster.stamina - staminaUsed;
             if(stamina < 1)
             {
                 hasStamina = false;
-            }
-        }
+           
 
+            }
+           
+            
+        }
+       
+        public int getSpeed()
+        {
+            return this.speed;
+        }
         public Boolean currentlyLiving()
         {
             return isAlive;
@@ -88,37 +133,41 @@ namespace MoonMonsterConsole
             Console.Write("first int= "+firstInt);
         }
 
-        public int gethealth()
+        public int getHealth()
         {
             return health;
         }
-
+        
+        public int getSize()
+        {
+            return this.size;
+        }
         public int getId()
         {
             return id;
         }
 
-        public int getstamina()
+        public int getStamina()
         {
             return stamina;
         }
 
-        public int getlevel()
+        public int getLevel()
         {
             return level;
         }
 
-        public int getagility()
+        public int getAgility()
         {
             return agility;
         }
 
-        public int getstrength()
+        public int getStrength()
         {
             return strength;
         }
 
-        public List<Move> getmoveList()
+        public List<Move> getMoveList()
         {
             return moveList;
         }

@@ -8,19 +8,41 @@ namespace MoonMonsterConsole
 {
     class Roster
     {
-        List<monster> monsterRoster = new List<monster>();
-
-        public Roster(List<monster> fmonsterRoster)
+        List<Monster> monsterRoster = new List<Monster>();
+        String name;
+        public int getSize()
         {
-            fmonsterRoster = monsterRoster;
+            return monsterRoster.Count();
         }
 
-        public void addMonster(monster newMonster)
+        public Roster(List<Monster> fmonsterRoster,string nameTemp)
+        {
+            monsterRoster = fmonsterRoster;
+            name = nameTemp;
+        }
+        public int count()
+        {
+            return monsterRoster.Count();
+
+        }
+
+        public Monster returnMonsterAt(int index)
+        {
+            Monster toBeReturned = monsterRoster.ElementAt(index);
+            //monsterRoster.ElementAt(index).getMoveList().ElementAt(0).getMaxDamage();
+            return toBeReturned;
+        }
+        public int testMaxdamageSpecailCase(int index)
+        {
+            int damage=monsterRoster.ElementAt(index).getMoveList().ElementAt(0).getMaxDamage();
+            return damage;
+        }
+        public void addMonster(Monster newMonster)
         {
             monsterRoster.Add(newMonster);
         }
 
-        public int getIndex(monster currentMonster)
+        public int getIndex(Monster currentMonster)
         {
             int index = monsterRoster.IndexOf(currentMonster);
             return index;
@@ -28,12 +50,12 @@ namespace MoonMonsterConsole
 
         public void updateRoster(int startingIndex, int finalIndex)
         {
-            monster item = monsterRoster[startingIndex];
+            Monster item = monsterRoster[startingIndex];
             monsterRoster.Remove(item);
             monsterRoster.Insert(finalIndex, item);
         }
         
-        public void removeMonster(monster unwantedMonster)
+        public void removeMonster(Monster unwantedMonster)
         {
             monsterRoster.Remove(unwantedMonster);
         }

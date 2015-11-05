@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace MoonMonsterConsole
 {
-    class Builder
+    public class Builder
     {
         List<Move> moveList = new List<Move>();
         List<Monster> monsterDataBase = new List<Monster>();
@@ -110,6 +112,7 @@ namespace MoonMonsterConsole
 
             Move tempMove = new Move(moveName, moveId, staminaReq, attackType, maxDamage, maxDefense, attackSize, attackSpeed, defenseSize,
                 defenseSpeed, attackStrength, defenseStrength, fire, ice, plant, water, rock, light,levelReq);
+
             return tempMove;
         }
 
@@ -290,7 +293,8 @@ namespace MoonMonsterConsole
             moveList.Add(bite);
             moveList.Add(fireBreath);
             moveList.Add(photoBeam);
-
+          
+           
             return moveList;
 
 

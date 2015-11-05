@@ -9,25 +9,25 @@ namespace MoonMonsterConsole
     public class Move
     {
         //global attributes all moves have
-        int moveId;
-        int staminaReq;
-        string type;
-        int maxDamage;
-        int maxDefense;
-        int asize;
-        int aspeed;
-        int dsize;
-        int dspeed;
-        int fire;
-        int ice;
-        int plant;
-        int water;
-        int rock;
-        int lightning;
-        int dstrength;
-        int astrength;
-        string name;
-        int levelReq;
+        public int moveId;
+        public int staminaReq;
+        public string type;
+        public int maxDamage;
+        public int maxDefense;
+        public int asize;
+        public int aspeed;
+        public int dsize;
+        public int dspeed;
+        public int fire;
+        public int ice;
+        public int plant;
+        public int water;
+        public int rock;
+        public int lightning;
+        public int dstrength;
+        public int astrength;
+        public string name;
+        public int levelReq;
         //initializing Move as an object f stands for first
         public Move(string tname,int fmoveId, int fstaminaReq, string ftype, int fmaxDamage, int fmaxDefense, int fasize, int faspeed, int fdsize, int fdspeed,int taStrength, int tdStrength, int ffire, int fice, int fplant, int fwater, int frock, int flightning, int levReq)
         {
@@ -50,6 +50,10 @@ namespace MoonMonsterConsole
             rock = frock;
             lightning = flightning;
             levelReq = levReq;
+        }
+        public Move()
+        {
+
         }
         public int getFire()
         {

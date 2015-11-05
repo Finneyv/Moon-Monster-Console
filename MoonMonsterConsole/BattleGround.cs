@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoonMonsterConsole
 {
-    class BattleGround
+   public class BattleGround
     {
         Builder Build = new Builder();
         Roster playerOneRoster;
@@ -57,7 +57,7 @@ namespace MoonMonsterConsole
             Console.Write("\n");
             return pAV;
         }
-        public float principalAttackValueFire(Monster attackMonster, Move attackMove)
+ /*       public float principalAttackValueFire(Monster attackMonster, Move attackMove)
         {
             float pAV = attackMove.getMaxDamage();
 
@@ -101,7 +101,7 @@ namespace MoonMonsterConsole
             Console.Write("\n");
             return pAV;
         }
-
+        */
         public float principalDefenseValue(Monster defenseMonster, Move attackMove)
         {
             float pDV = attackMove.getMaxDefense();

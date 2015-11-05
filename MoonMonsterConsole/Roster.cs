@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoonMonsterConsole
 {
-    class Roster
+   public class Roster
     {
         List<Monster> monsterRoster = new List<Monster>();
         String name;

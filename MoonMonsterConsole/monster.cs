@@ -10,22 +10,22 @@ namespace MoonMonsterConsole
 	{
 
 		// The first variable is a test
-		int firstInt = 0;
-		// the first set of variables are the ones that will change
-		int size = 0;
-		int id = 0;
-		int health = 0;
-		int stamina = 0;
-		int level = 0;
-		// the second list is variables that will remain constant unless an evolution/item is used. 
-		int speed = 0;
-		int agility = 0;
-		int strength = 0;
-		Boolean isAlive = true;
-		Boolean hasStamina = true;
-		string name;
-		//list of types
-		string type = "0";
+		public int firstInt = 0;
+		 // the first set of variables are the ones that will change
+		public int size = 0;
+		public int id = 0;
+		public int health = 0;
+		public int stamina = 0;
+		public int level = 0;
+		 // the second list is variables that will remain constant unless an evolution/item is used. 
+		public int speed = 0;
+		public int agility = 0;
+		public int strength = 0;
+		public Boolean isAlive = true;
+		public Boolean hasStamina = true;
+		public string name;
+		 //list of types
+		public string type = "0";
 
 
 		// this will be a list of moves that are available to the creature
@@ -44,12 +44,15 @@ namespace MoonMonsterConsole
 			agility = fagility;
 			strength = fstrength;
 			moveList = fmoveList;
-
 			size = sizet;
 			type = mtype;
 			name = nameT;
 			calculateMonster();
 		}
+        public Monster()
+        {
+
+        }
 		public string getName()
 		{
 			return name;

@@ -4,11 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace MoonMonsterConsole
 {
 
-    class test
+    public class test
     {
         Monster dragonShep;
         Monster triceritops;
@@ -49,11 +50,15 @@ namespace MoonMonsterConsole
             moveList.Add(bite);
             moveList.Add(fireBreath);
             moveList.Add(photoBeam);
-           
 
-        
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Move>));
+            TextWriter writer = new StreamWriter("movelist.xml");
+            serializer.Serialize(writer, moveList);
+            writer.Close();
 
-    }
+
+
+        }
         public test()
         {
             this.monsterDataBase = new List<Monster>();
@@ -98,19 +103,33 @@ namespace MoonMonsterConsole
             monsterDataBase.Add(snowDeamon);
             monsterDataBase.Add(thunderCloud);
 
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Monster>));
+            TextWriter writer = new StreamWriter("monsterdatabase.xml");
+            serializer.Serialize(writer, monsterDataBase);
+            writer.Close();
+
             //  Builder monsterBuilder = new Builder();
             // Monster tempMonster=monsterBuilder.buildMonsterFromConsole(moveList);
             // monsterDataBase.Add(tempMonster);
-      
+
         }    
         public void printMoveList()
         {
+            var moves = new List<Move>();
 
-            for (int b = 0; b < moveList.Count; b++)
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Move>));
+            TextReader reader = new StreamReader("movelist.xml");
+            moves = (List<Move>)serializer.Deserialize(reader);
+            reader.Close();
+
+            for (int b = 0; b < moves.Count; b++)
             {
-                Console.Write("Name: " + moveList.ElementAt(b).getName() + ", Id: " + moveList.ElementAt(b).getId() + ", Type: " + moveList.ElementAt(b).getType() + ", M Damage: " + moveList.ElementAt(b).getMaxDamage() + ", M Defense: " + moveList.ElementAt(b).getMaxDefense() + "\n");
+                Console.Write("Name: " + moves.ElementAt(b).getName() + ", Id: " + moves.ElementAt(b).getId() + ", Type: " + moves.ElementAt(b).getType() + ", M Damage: " + moves.ElementAt(b).getMaxDamage() + ", M Defense: " + moves.ElementAt(b).getMaxDefense() + "\n");
             }
         }
+
+
+
         public void buildRoster()
         {
             List<Monster> player1temp = new List<Monster>();
@@ -165,6 +184,7 @@ namespace MoonMonsterConsole
         }
         public void testBattleManager()
         {
+
             firstFight.battleManager(playerOne,playerTwo,monsterDataBase);
             Console.ReadLine();
         }
@@ -265,6 +285,7 @@ namespace MoonMonsterConsole
         }
         static void gameLoop()
         {
+
             Builder buildRoster = new Builder();
             test secondTest = new test();
             secondTest.buildmoves();
@@ -292,7 +313,8 @@ namespace MoonMonsterConsole
                 Console.Write("1: View Monster DataBase: " + "\n");
                 Console.Write("2: Create Nwe Monster" + "\n");
                 Console.Write("3: Create new Move" + "\n");
-                Console.Write("4: Create new Roster");
+                Console.Write("4: Create new Roster"+"\n");
+                Console.Write("5: view move List " + "\n");
                 string tempStringTwo=Console.ReadLine();
                 int tempIntTwo = Convert.ToInt32(tempStringTwo);
                 if (tempIntTwo == 1)
@@ -339,6 +361,13 @@ namespace MoonMonsterConsole
                     Console.ReadLine();
                     gameLoop();
 
+                }
+                if (tempIntTwo == 5)
+                {
+                    secondTest.printMoveList();
+                    Console.Write("Press enter to continue");
+                    Console.ReadLine();
+                    gameLoop();
                 }
 
             }

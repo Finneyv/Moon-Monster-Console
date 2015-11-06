@@ -121,12 +121,28 @@ namespace MoonMonsterConsole
             TextReader reader = new StreamReader("movelist.xml");
             moves = (List<Move>)serializer.Deserialize(reader);
             reader.Close();
-
+            Console.Write("movelist ");
             for (int b = 0; b < moves.Count; b++)
             {
                 Console.Write("Name: " + moves.ElementAt(b).getName() + ", Id: " + moves.ElementAt(b).getId() + ", Type: " + moves.ElementAt(b).getType() + ", M Damage: " + moves.ElementAt(b).getMaxDamage() + ", M Defense: " + moves.ElementAt(b).getMaxDefense() + "\n");
             }
         }
+
+        public void printMonsterList()
+        {
+            var monster = new List<Monster>();
+
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Move>));
+            TextReader reader = new StreamReader("monsterdatabase.xml");
+            monster = (List<Monster>)serializer.Deserialize(reader);
+            reader.Close();
+
+            for (int b = 0; b < monster.Count; b++)
+            {
+                Console.Write("Name: " + monster.ElementAt(b).getName() + ", Id: " + monster.ElementAt(b).getId() + ", Type: " + monster.ElementAt(b).getType() + "\n");
+            }
+        }
+
 
 
 
@@ -159,6 +175,12 @@ namespace MoonMonsterConsole
            // Console.Write("playerTwo roster size is " + playerTwo.count() + "\n");
             Console.ReadLine();
             */
+          // XmlSerializer serializer = new XmlSerializer(typeof(List<Roster>));
+           // TextWriter writer = new StreamWriter("roseterdatabase.xml");
+            //serializer.Serialize(writer, monsterDataBase);
+            // writer.Close();
+
+
         }
         public void buildBattleGround()
         {
@@ -169,6 +191,8 @@ namespace MoonMonsterConsole
         }
         public Move getMoveFromConsole(List<Move> moveList)
         {
+            Console.Write("Seriializer closed test");
+
             Console.Write("     Please pick a move"+"\n");
             for (int b = 0; b < moveList.Count; b++)
             {
@@ -177,8 +201,10 @@ namespace MoonMonsterConsole
             string tempMove=Console.ReadLine();
             int tempMoveInt = Convert.ToInt32(tempMove);
             tempMoveInt = tempMoveInt - 1;
-            Console.Write("Move chosen is: " +moveList.ElementAt(tempMoveInt).getName()+ "\n");
+            //Console.Write("Move chosen is: " +moveList.ElementAt(tempMoveInt).getName()+ "\n");
+            printMoveList();
             Console.Write("\n");
+
             return moveList.ElementAt(tempMoveInt);
 
         }
@@ -315,6 +341,7 @@ namespace MoonMonsterConsole
                 Console.Write("3: Create new Move" + "\n");
                 Console.Write("4: Create new Roster"+"\n");
                 Console.Write("5: view move List " + "\n");
+                Console.Write("6: view Monster Database"+"\n");
                 string tempStringTwo=Console.ReadLine();
                 int tempIntTwo = Convert.ToInt32(tempStringTwo);
                 if (tempIntTwo == 1)
@@ -342,14 +369,17 @@ namespace MoonMonsterConsole
 
                 if (tempIntTwo == 3)
                 {
-
                     Move newMove = buildRoster.buildMoveFromConsole();
                     secondTest.moveList.Add(newMove);
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<Move>));
+                    TextWriter writer = new StreamWriter("movelist.xml");
+                    serializer.Serialize(writer, newMove);
+                    writer.Close();
+                    Console.Write("Seriializer closed");
 
                     Console.Write("Press enter to continue");
                     Console.ReadLine();
                     gameLoop();
-
                 }
                 if (tempIntTwo == 4)
                 {
@@ -363,6 +393,13 @@ namespace MoonMonsterConsole
 
                 }
                 if (tempIntTwo == 5)
+                {
+                    secondTest.printMoveList();
+                    Console.Write("Press enter to continue");
+                    Console.ReadLine();
+                    gameLoop();
+                }
+                if (tempIntTwo == 6)
                 {
                     secondTest.printMoveList();
                     Console.Write("Press enter to continue");

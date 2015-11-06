@@ -143,7 +143,7 @@ namespace MoonMonsterConsole
 
         public Move getMoveFromConsole(List<Move> moveList)
         {
-            Console.Write("     Please pick a move (ID#) " + "\n");
+            
             for (int b = 0; b < moveList.Count; b++)
             {
                 Console.Write("Name: " + moveList.ElementAt(b).getName() + ", Id: " + moveList.ElementAt(b).getId() + ", Type: " + moveList.ElementAt(b).getType() + ", M Damage: " + moveList.ElementAt(b).getMaxDamage() + ", M Defense: " + moveList.ElementAt(b).getMaxDefense() + "\n");

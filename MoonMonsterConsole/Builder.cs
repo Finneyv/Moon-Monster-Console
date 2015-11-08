@@ -32,16 +32,20 @@ namespace MoonMonsterConsole
 
         }
 
-        public Move buildMoveFromConsole()
+        public Move buildMoveFromConsole(List<Move> moveList)
         {
 
             String tempString;
             String moveName;
             Console.Write("Input the Name of the move then press enter" + "\n");
             moveName = Console.ReadLine();
-            Console.Write("Input the Moves Id"+"\n");
-            tempString = Console.ReadLine();
-            int moveId = Convert.ToInt32(tempString);
+
+            //Console.Write("Input the Moves Id"+"\n");
+            //tempString = Console.ReadLine();
+            //int moveId = Convert.ToInt32(tempString);
+
+            int moveId = moveList.Count();
+
             int staminaReq = 0;
             Console.Write("Input the Stamina Req"+"\n");
             tempString = Console.ReadLine();
@@ -117,18 +121,19 @@ namespace MoonMonsterConsole
         }
 
 
-       public Monster buildMonsterFromConsole(List<Move> moveList)
+       public Monster buildMonsterFromConsole(List<Move> moveList, int Id)
         {
 
-            List<Move> tempMoves = moveList;
+            List<Move> tempMoves = new List<Move>();
+           
             String tempString;
             String name;
             Console.Write("Input the Name of the monster then press enter" + "\n");
             name = Console.ReadLine();
 
-            Console.Write("Input the Monster Id" + "\n");
-            tempString = Console.ReadLine();
-            int iD = Convert.ToInt32(tempString);
+         //   Console.Write("Input the Monster Id" + "\n");
+          //  tempString = Console.ReadLine();
+          //  int iD = Convert.ToInt32(tempString);
             int stamina = 0;
 
             Console.Write("Input the Max Stamina" + "\n");
@@ -136,9 +141,13 @@ namespace MoonMonsterConsole
             stamina = Convert.ToInt32(tempString);
             String type = "";
 
-
+            
             Console.Write("Input the Type (lava,water,light,rock,plant,ice,normal) " + "\n");
+
+
             type = Console.ReadLine();
+
+          
 
             int health = 0;
             Console.Write("Input the Max Health: " + "\n");
@@ -171,8 +180,9 @@ namespace MoonMonsterConsole
             tempString = Console.ReadLine();
             attackStrength = Convert.ToInt32(tempString);
 
+            Id += 1;
 
-            Monster tempMonster = new Monster(name, iD, health, stamina, level, attackSpeed, agility, attackStrength, attackSize, tempMoves,type);
+            Monster tempMonster = new Monster(name, Id, health, stamina, level, attackSpeed, agility, attackStrength, attackSize, tempMoves,type);
             return tempMonster;
         }
         public Roster buildRosterFromConsole(List<Monster> monsterDataBase)
@@ -204,7 +214,9 @@ namespace MoonMonsterConsole
 
                 for (int b = 0; b < playerOneRoster.returnMonsterAt(i).getMoveList().Count; b++)
                 {
-                    Console.Write(playerOneRoster.returnMonsterAt(i).getName() + " move number " + b + " is named " + playerOneRoster.returnMonsterAt(i).getMoveList().ElementAt(b).getName() + "\n");
+                    int a = 1;
+                    a = a + b;
+                    Console.Write(playerOneRoster.returnMonsterAt(i).getName() + " move number " + a + " is named " + playerOneRoster.returnMonsterAt(i).getMoveList().ElementAt(b).getName() + "\n");
                 }
             }
             Console.ReadLine();
@@ -233,7 +245,7 @@ namespace MoonMonsterConsole
           */
 
             Builder monsterBuilder = new Builder();
-            Monster tempMonster = monsterBuilder.buildMonsterFromConsole(moveList);
+            
 
             Monster dragonShep = new Monster("Dragon Sheppard", 1, 815, 400, 11, 85, 50, 90, 80, moveList, "lava");
             //List<Move> moveLister = dragonShep.getMoveList();
@@ -250,6 +262,7 @@ namespace MoonMonsterConsole
             monsterDataBase.Add(prettyMermaid);
             monsterDataBase.Add(snowDeamon);
             monsterDataBase.Add(thunderCloud);
+            Monster tempMonster = monsterBuilder.buildMonsterFromConsole(moveList, monsterDataBase.Count - 1);
             monsterDataBase.Add(tempMonster);
             //   List<Move> moveListerT = dragonShep.getMoveList();
             // Move secondMove = moveListerT.ElementAt(0);

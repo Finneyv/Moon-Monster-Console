@@ -27,11 +27,9 @@ namespace MoonMonsterConsole
 		 //list of types
 		public string type = "0";
 
-
 		// this will be a list of moves that are available to the creature
 
 		List<Move> moveList = new List<Move>();
-
 
 	   // here I am attempting to intialize the Monster and give it a test value, i then expect this function to assign the value and print firstInt
 		public Monster(string nameT,int firstid, int fhealth, int fstamina, int flevel, int fspeed, int fagility, int fstrength,int sizet, List<Move> fmoveList,string mtype)
@@ -43,9 +41,32 @@ namespace MoonMonsterConsole
 			speed = fspeed;
 			agility = fagility;
 			strength = fstrength;
-			moveList = fmoveList;
-			size = sizet;
-			type = mtype;
+            moveList = fmoveList;
+            type = mtype;
+            List<Move> tempMoves= new List<Move>();
+
+
+            for (int d = 0; d < moveList.Count(); d++)
+            {
+                if (level >= moveList.ElementAt(d).levelReq)
+                {
+                    //    Console.Write("loop + movelist.Count "+moveList.Count() + "\n");
+                    if (type == moveList.ElementAt(d).getType())
+                    {
+                        // Console.Write("type"+"\n");
+                        tempMoves.Add(moveList.ElementAt(d));
+                    }
+                    if (moveList.ElementAt(d).getType() == "normal")
+                    {
+                        //   Console.Write("noraml" + "\n");
+                        tempMoves.Add(moveList.ElementAt(d));
+                    }
+                }
+            }
+
+            moveList = tempMoves;
+            size = sizet;
+			
 			name = nameT;
 			calculateMonster();
 		}
@@ -53,6 +74,10 @@ namespace MoonMonsterConsole
         {
 
         }
+        public void changeSpeedTo(int newSpeed) {
+            speed = newSpeed;
+        }
+
 		public string getName()
 		{
 			return name;
@@ -73,8 +98,6 @@ namespace MoonMonsterConsole
 
 			tempHealth = health * tempLevel;
 			health = Convert.ToInt32(tempHealth);
-			 
-			 
 	   
 		}
 		public string getType()

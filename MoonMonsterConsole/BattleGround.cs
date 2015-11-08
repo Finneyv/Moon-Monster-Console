@@ -44,17 +44,18 @@ namespace MoonMonsterConsole
 
             float total = moveSize + moveSpeed + moveStrength;
             float effectivnessDecimal = total / 100;
+
             //Console.Write("move max damage @ 100% effecency " + pAV + "\n");
-            //Console.Write("effectivness deceimal= " + effectivnessDecimal + "\n");
+          //  Console.Write("effectivness deceimal= " + effectivnessDecimal + "\n");
             pAV = pAV * effectivnessDecimal;
-           // Console.Write("max damage after applied (defense still to be calculated) " + pAV + "\n");
+            // Console.Write("max damage after applied (defense still to be calculated) " + pAV + "\n");
 
             float levelMod = attackMonster.getLevel();
             levelMod = levelMod / 100;
            // Console.Write(" level mod attacker " + levelMod + "\n");
             pAV = pAV * levelMod;
-            Console.Write(" final pAV w/ level consider " + pAV + "\n");
-            Console.Write("\n");
+        //    Console.Write(" final pAV w/ level consider " + pAV + "\n");
+      //      Console.Write("\n");
             return pAV;
         }
  /*       public float principalAttackValueFire(Monster attackMonster, Move attackMove)
@@ -141,12 +142,18 @@ namespace MoonMonsterConsole
             return pDV;
         }
 
-        public Move getMoveFromConsole(List<Move> moveList)
+        public Move getMoveFromConsole(List<Move> moveList,Monster attackMonster)
         {
             
             for (int b = 0; b < moveList.Count; b++)
             {
-                Console.Write("Name: " + moveList.ElementAt(b).getName() + ", Id: " + moveList.ElementAt(b).getId() + ", Type: " + moveList.ElementAt(b).getType() + ", M Damage: " + moveList.ElementAt(b).getMaxDamage() + ", M Defense: " + moveList.ElementAt(b).getMaxDefense() + "\n");
+                Move moveChoice = new Move();
+                moveChoice = moveList.ElementAt(b);
+                float pAv= principalAttackValue(attackMonster, moveChoice);
+                pAv = pAv / attackMonster.getLevel();
+                int a = b;
+                a += 1;
+                Console.Write("Name: " + moveList.ElementAt(b).getName() + ", Choice: " + a + ", Type: " + moveList.ElementAt(b).getType() +", Perfect Hit: "+pAv + "\n");
             }
             string tempMove = Console.ReadLine();
             
@@ -586,13 +593,14 @@ namespace MoonMonsterConsole
             Console.Write("Attacker: " + attackMonster.getName() + ", Level: " + attackMonster.getLevel() + " Health: " + attackMonster.getHealth() + ", Stamina: " + attackMonster.getStamina()+", Type: "+attackMonster.getType() + "\n");
             Console.Write("Defender: " + defendingMonster.getName() + ", Level: " + defendingMonster.getLevel() + " Health: " + defendingMonster.getHealth() + ", Stamina: " + defendingMonster.getStamina()+ ", Type: "+defendingMonster.getType() + "\n");
 
-            Move toBecastMove = getMoveFromConsole(attackMonster.getMoveList());
+            Move toBecastMove = getMoveFromConsole(attackMonster.getMoveList(),attackMonster);
+
             castMove(attackMonster, toBecastMove, defendingMonster);
             if (defendingMonster.currentlyLiving() == true)
             {
 
                 fightTwo(defendingMonster, attackMonster);
-                Console.Write("other player's turn " + "\n");
+                
             }
             else
             {

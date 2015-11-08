@@ -107,5 +107,9 @@ namespace MoonMonsterConsole
         {
             return moveId;
         }
+        public int getLevelReq()
+        {
+            return levelReq;
+        }
     }
 }

@@ -38,7 +38,7 @@ namespace MoonMonsterConsole
             moveSize = moveSize * creatureSize;
             moveSpeed = moveSpeed * creatureSpeed;
             moveStrength = moveStrength * creatureStrength;
-           // Console.Write("move size " + moveSize + "\n");
+           //Console.Write("move size " + moveSize + "\n");
             //Console.Write("move speed " + moveSpeed + "\n");
             //Console.Write("move Strength " + moveStrength + "\n");
 
@@ -58,51 +58,7 @@ namespace MoonMonsterConsole
       //      Console.Write("\n");
             return pAV;
         }
- /*       public float principalAttackValueFire(Monster attackMonster, Move attackMove)
-        {
-            float pAV = attackMove.getMaxDamage();
 
-
-            float moveSize = attackMove.getSizeAttacker();
-            float moveSpeed = attackMove.getSpeed();
-            float moveStrength = attackMove.getStrength();
-
-            moveSize = moveSize / 100;
-            moveSpeed = moveSpeed / 100;
-            moveStrength = moveStrength / 100;
-
-            int creatureSpeed = attackMonster.getSpeed();
-            int creatureStrength = attackMonster.getStrength();
-            int creatureSize = attackMonster.getSize();
-
-            moveSize = moveSize * creatureSize;
-            moveSpeed = moveSpeed * creatureSpeed;
-            moveStrength = moveStrength * creatureStrength;
-
-            float total = moveSize + moveSpeed + moveStrength;
-
-
-            float effectivnessDecimal = total / 100;
-          //  Console.Write("move max damage @ 100% effecency " + pAV + "\n");
-
-            pAV = pAV * effectivnessDecimal;
-            //Console.Write("max damage after applied (defense still to be calculated) " + pAV + "\n");
-
-            float levelMod = attackMonster.getLevel();
-            levelMod = levelMod / 100;
-        //    Console.Write(" level mod attacker " + levelMod + "\n");
-            pAV = pAV * levelMod;
-          //  Console.Write("pAV w/ level consider " + pAV + "\n");
-            float fireMult = attackMove.getFire();
-            fireMult = fireMult / 100;
-           // Console.Write("fire mult " + fireMult + "\n");
-
-            pAV = pAV * fireMult;
-            Console.Write("pAV w/ fire " + pAV + "\n");
-            Console.Write("\n");
-            return pAV;
-        }
-        */
         public float principalDefenseValue(Monster defenseMonster, Move attackMove)
         {
             float pDV = attackMove.getMaxDefense();
@@ -180,7 +136,7 @@ namespace MoonMonsterConsole
             return netPrincipalDamage;
         }
 
-        public float specailAttack(Monster defendingMonster, Move attackMove, float damage)
+        public float specialAttack(Monster defendingMonster, Move attackMove, float damage)
         {
             int keepTrack = 0;
             if (attackMove.getType() == "lava")
@@ -203,7 +159,7 @@ namespace MoonMonsterConsole
                 }
                 if (defendingMonster.getType() == "rock")
                 {
-                    float fireTypeBonus = (float).60;
+                    float fireTypeBonus = (float).50;
                     damage = typeBonus(fireTypeBonus, damage);
                     keepTrack = 1;
                     Console.Write("check lava on rock" + "\n");
@@ -211,7 +167,7 @@ namespace MoonMonsterConsole
                 }
                 if (defendingMonster.getType() == "water")
                 {
-                    float fireTypeBonus = (float).5;
+                    float fireTypeBonus = (float).6;
                     damage = typeBonus(fireTypeBonus, damage);
                     keepTrack = 1;
                     Console.Write("check lava on water" + "\n");
@@ -512,7 +468,7 @@ namespace MoonMonsterConsole
 
             if (attackMove.getType() != "normal")
             {
-                damage = specailAttack(defendingMonster, attackMove, damage);
+                damage = specialAttack(defendingMonster, attackMove, damage);
             }
             else
             {

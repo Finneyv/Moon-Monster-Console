@@ -106,7 +106,7 @@ namespace MoonMonsterConsole
 		}
 		public void renderDamage(int damage, Monster attackMonster, Monster defendingMonster, Move attackMove)
 		{
-
+           
 			health = health - damage;
 			if (health < 1)
 			{

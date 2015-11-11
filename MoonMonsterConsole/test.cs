@@ -18,7 +18,11 @@ namespace MoonMonsterConsole
         List<Monster> monsterDataBase = new List<Monster>();
         BattleGround firstFight;
         Builder Build = new Builder();
-       
+       public test()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+        }
+
         public void buildmoves()
         {      
             List<Move> moves = new List<Move>();
@@ -27,7 +31,7 @@ namespace MoonMonsterConsole
             moves = (List<Move>)serializer.Deserialize(reader);
             moveList = moves;
             reader.Close();
-            Console.Write("movelist ");
+           // Console.Write("movelist ");
         }
   
         public void buildMonsters()
@@ -46,14 +50,22 @@ namespace MoonMonsterConsole
             monsterDataBase.Add(prettyMermaid);
             monsterDataBase.Add(snowDeamon);
             monsterDataBase.Add(thunderCloud);
-           
-            /*
+
+            
                         XmlSerializer serializer = new XmlSerializer(typeof(List<Monster>));
                         TextWriter writer = new StreamWriter("monsterdatabase.xml");
                         serializer.Serialize(writer, monsterDataBase);
                         writer.Close();
-            */
-       
+            
+            /*
+            List<Monster> monsterDatabase = new List<Monster>();
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Monster>));
+            TextReader reader = new StreamReader("monsterdatabase.xml");
+            monsterDatabase = (List<Monster>)serializer.Deserialize(reader);
+            monsterDataBase =monsterDatabase;
+            reader.Close();
+           */
+
         }    
         public void printMoveList(List<Move> moveList)
         {
@@ -255,13 +267,12 @@ namespace MoonMonsterConsole
             }
             if (tempInt == 3)
             {
-                Console.Write(" Thank for playing ");
-            
+                Console.Write("Thanks for playing"+"\n");
+            //saves moves
             XmlSerializer serializer = new XmlSerializer(typeof(List<Move>));
             TextWriter writer = new StreamWriter("movelist.xml");
             serializer.Serialize(writer, loopTest.moveList);
             writer.Close();
-            
 
             }
 
